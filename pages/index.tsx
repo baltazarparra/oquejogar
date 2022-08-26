@@ -6,7 +6,10 @@ const Home: NextPage = () => {
     <div>
       <Head>
         <title>O que jogar?</title>
-        <meta name="description" content="Descubra novos jogos baseado em títulos que já gosta" />
+        <meta
+          name="description"
+          content="Descubra novos jogos baseado em títulos que já gosta"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>O que jogar?</h1>
