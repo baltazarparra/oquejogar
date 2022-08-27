@@ -5,14 +5,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Login from '../components/Login'
 
-const fakeApi = () => console.log('Api is called')
-
 export default function Home({ providers }) {
   const { data: session } = useSession()
   const [inputValue, setInputValue] = useState('')
   const [searchTerm, setSearchTerm] = useState()
-
-  console.log('session', session)
+  const [games, setGames] = useState()
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -22,9 +19,21 @@ export default function Home({ providers }) {
     return () => clearTimeout(timer)
   }, [inputValue])
 
-  if (!session) return <Login providers={providers} />
+  useEffect(() => {
+    if (searchTerm) {
+      fetch(
+        `https://rawg.io/api/games/${searchTerm
+          .split(' ')
+          .join('-')}?key=458263303ecd4ab5b91d155ef78bcdcb`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setGames(data)
+        })
+    }
+  }, [searchTerm])
 
-  console.log('inputValue', inputValue)
+  if (!session) return <Login providers={providers} />
 
   return (
     <div>
@@ -51,7 +60,17 @@ export default function Home({ providers }) {
             type="text"
             onChange={(e) => setInputValue(e.target.value)}
           />
-          {searchTerm && <p>{searchTerm}</p>}
+          {games && (
+            <>
+              <p>{games.description_raw}</p>
+              <Image
+                width="100px"
+                height="100px"
+                src={games.background_image}
+                alt={session.user.name}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
