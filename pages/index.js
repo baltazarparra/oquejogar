@@ -22,18 +22,18 @@ export default function Home({ providers }) {
   useEffect(() => {
     if (searchTerm) {
       fetch(
-        `https://rawg.io/api/games/${searchTerm
-          .split(' ')
-          .join('-')}?key=458263303ecd4ab5b91d155ef78bcdcb`
+        `https://rawg.io/api/games?search=${searchTerm}&page_size=20&page=1&key=458263303ecd4ab5b91d155ef78bcdcb`
       )
         .then((res) => res.json())
         .then((data) => {
-          setGames(data)
+          setGames(data.results)
         })
     }
   }, [searchTerm])
 
   if (!session) return <Login providers={providers} />
+
+  if (games) console.log(games)
 
   return (
     <div>
@@ -60,19 +60,23 @@ export default function Home({ providers }) {
             type="text"
             onChange={(e) => setInputValue(e.target.value)}
           />
-          {games && (
-            <>
-              <p>{games.description_raw}</p>
-              <Image
-                width="100px"
-                height="100px"
-                src={games.background_image}
-                alt={session.user.name}
-              />
-            </>
-          )}
         </div>
       </div>
+      {games &&
+        games.map((game) => (
+          <div key={game.id}>
+            <p>{game.name}</p>
+            <button onClick={() => console.log(game)}>Add</button>
+            {game.background_image && (
+              <Image
+                width="160"
+                height="100"
+                src={game.background_image}
+                alt={session.user.name}
+              />
+            )}
+          </div>
+        ))}
     </div>
   )
 }
