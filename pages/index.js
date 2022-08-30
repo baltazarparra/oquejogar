@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { getProviders, getSession, useSession } from 'next-auth/react'
 import firebaseApp from '../firebaseApp'
 
+import Link from 'next/link'
 import Head from 'next/head'
 import Image from 'next/image'
 import Login from '../components/Login'
@@ -14,17 +15,27 @@ export default function Home({ providers }) {
   const [searchTerm, setSearchTerm] = useState()
   const [games, setGames] = useState()
   const [posts, setPosts] = useState()
-  const [refetch, setRefetch] = useState(false)
+  const [slug, setSlug] = useState()
+  const [refetch, setRefetch] = useState()
 
   const fetchPosts = async () => {
-    const response = db.collection(session?.user.uid)
-    const data = await response.get()
+    const response = slug && db.collection(slug)
+    const data = await response?.get()
     setPosts(data)
   }
 
   useEffect(() => {
-    setRefetch(false)
+    setRefetch(!refetch)
   }, [])
+
+  useEffect(() => {
+    if (session) {
+      const raw = `${session.user.tag
+        .split(' ')
+        .join('')}${session.user.uid.substring(0, 3)}`
+      setSlug(raw)
+    }
+  }, [session])
 
   useEffect(() => {
     if (session) fetchPosts()
@@ -84,13 +95,14 @@ export default function Home({ providers }) {
         </div>
       </div>
       {games &&
+        slug &&
         games.map((game) => (
           <div key={game.id}>
             <p>{game.name}</p>
             <button
               onClick={() => {
-                setRefetch(true)
-                db.collection(session.user.uid).doc(game.slug).set({
+                setRefetch(!refetch)
+                db.collection(slug).doc(game.slug).set({
                   game
                 })
               }}
@@ -107,6 +119,11 @@ export default function Home({ providers }) {
             )}
           </div>
         ))}
+      {session.user.uid && (
+        <Link href={`/user/${slug}`}>
+          <a>{session.user.name}</a>
+        </Link>
+      )}
     </div>
   )
 }
