@@ -14,6 +14,7 @@ export default function Home({ providers }) {
   const [searchTerm, setSearchTerm] = useState()
   const [games, setGames] = useState()
   const [posts, setPosts] = useState()
+  const [refetch, setRefetch] = useState(false)
 
   const fetchPosts = async () => {
     const response = db.collection(session?.user.uid)
@@ -22,8 +23,12 @@ export default function Home({ providers }) {
   }
 
   useEffect(() => {
+    setRefetch(false)
+  }, [])
+
+  useEffect(() => {
     if (session) fetchPosts()
-  }, [posts])
+  }, [session, refetch])
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -84,8 +89,7 @@ export default function Home({ providers }) {
             <p>{game.name}</p>
             <button
               onClick={() => {
-                game.uid = session.user.uid
-                console.log('data.game', game)
+                setRefetch(true)
                 db.collection(session.user.uid).doc(game.slug).set({
                   game
                 })
