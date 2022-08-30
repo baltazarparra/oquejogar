@@ -63,16 +63,6 @@ export default function Home({ providers }) {
           posts.docs.map((doc) => (
             <div key={doc.id}>{JSON.stringify(doc.data().game.name)}, </div>
           ))}
-        <button
-          onClick={() => {
-            db.collection('games').doc(session.user.uid).set({
-              bacate: 'yes',
-              id: 777
-            })
-          }}
-        >
-          click
-        </button>
         <Image
           width="100px"
           height="100px"
