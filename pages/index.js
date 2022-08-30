@@ -6,8 +6,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Login from '../components/Login'
 
-import { useCollection } from 'react-firebase-hooks/firestore'
-
 const db = firebaseApp.firestore()
 
 export default function Home({ providers }) {
@@ -15,11 +13,17 @@ export default function Home({ providers }) {
   const [inputValue, setInputValue] = useState('')
   const [searchTerm, setSearchTerm] = useState()
   const [games, setGames] = useState()
+  const [posts, setPosts] = useState()
 
-  const [posts, postsloading, postserror] = useCollection(
-    db.collection(session.user.uid),
-    {}
-  )
+  const fetchPosts = async () => {
+    const response = db.collection(session?.user.uid)
+    const data = await response.get()
+    setPosts(data)
+  }
+
+  useEffect(() => {
+    if (session) fetchPosts()
+  }, [posts])
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -43,10 +47,6 @@ export default function Home({ providers }) {
 
   if (!session) return <Login providers={providers} />
 
-  if (games) console.log(games)
-
-  if (!postsloading) console.log(posts)
-
   return (
     <div>
       <Head>
@@ -66,8 +66,8 @@ export default function Home({ providers }) {
         <Image
           width="100px"
           height="100px"
-          src={session.user.image}
-          alt={session.user.name}
+          src={session?.user.image}
+          alt={session?.user.name}
         />
         <div>
           <input
