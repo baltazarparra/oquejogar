@@ -1,4 +1,5 @@
-import { initializeApp } from 'firebase/app'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/firestore'
 
 const credentials = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -11,6 +12,6 @@ const credentials = {
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID
 }
 
-const firebase = initializeApp(credentials)
+const firebaseApp = firebase.initializeApp(credentials)
 
-export default firebase
+export default firebaseApp

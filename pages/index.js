@@ -1,15 +1,25 @@
 import { useState, useEffect } from 'react'
 import { getProviders, getSession, useSession } from 'next-auth/react'
+import firebaseApp from '../firebaseApp'
 
 import Head from 'next/head'
 import Image from 'next/image'
 import Login from '../components/Login'
+
+import { useCollection } from 'react-firebase-hooks/firestore'
+
+const db = firebaseApp.firestore()
 
 export default function Home({ providers }) {
   const { data: session } = useSession()
   const [inputValue, setInputValue] = useState('')
   const [searchTerm, setSearchTerm] = useState()
   const [games, setGames] = useState()
+
+  const [posts, postsloading, postserror] = useCollection(
+    db.collection(session.user.uid),
+    {}
+  )
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -35,6 +45,8 @@ export default function Home({ providers }) {
 
   if (games) console.log(games)
 
+  if (!postsloading) console.log(posts)
+
   return (
     <div>
       <Head>
@@ -47,6 +59,20 @@ export default function Home({ providers }) {
       </Head>
       <div>
         <h1>Adicionar Jogos</h1>
+        {posts &&
+          posts.docs.map((doc) => (
+            <div key={doc.id}>{JSON.stringify(doc.data().game.name)}, </div>
+          ))}
+        <button
+          onClick={() => {
+            db.collection('games').doc(session.user.uid).set({
+              bacate: 'yes',
+              id: 777
+            })
+          }}
+        >
+          click
+        </button>
         <Image
           width="100px"
           height="100px"
@@ -66,7 +92,17 @@ export default function Home({ providers }) {
         games.map((game) => (
           <div key={game.id}>
             <p>{game.name}</p>
-            <button onClick={() => console.log(game)}>Add</button>
+            <button
+              onClick={() => {
+                game.uid = session.user.uid
+                console.log('data.game', game)
+                db.collection(session.user.uid).doc(game.slug).set({
+                  game
+                })
+              }}
+            >
+              Add
+            </button>
             {game.background_image && (
               <Image
                 width="160"
