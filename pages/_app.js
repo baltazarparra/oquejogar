@@ -7,16 +7,25 @@ const GlobalStyle = createGlobalStyle`
     background-color: #BFC3CD;
     display: block;
     height: 100%;
-    max-width: 728px;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
-    color: navy;
+    color: #192534;
   }
 
   body {
-    padding: 1rem;
-    margin-top: 0;
+    margin: 0;
+    padding: 0;
     font-family: 'Roboto Mono', monospace;
+  }
+
+  article {
+    flex: 2;
+    background-image: url("/bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 20px;
+    margin: 1em;
   }
 `
 
