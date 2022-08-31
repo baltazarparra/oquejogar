@@ -27,6 +27,10 @@ export const Main = styled.main`
     text-align: center;
     padding: 0 20px;
 
+    @media (max-width: 1024px) {
+      justify-content: flex-start;
+    }
+
     p {
       padding: 0 20px;
       margin: 0 auto 20px;
@@ -54,8 +58,9 @@ export const Main = styled.main`
   }
   em {
     position: fixed;
-    bottom: 10px;
-    left: 10px;
+    bottom: 6px;
+    left: 6px;
+    font-size: 12px;
   }
 `
 
