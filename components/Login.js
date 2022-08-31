@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import G from '../public/g.svg'
 
 import AnimatedTextWord from './AnimatedTextWord'
-import AnimatedTextEmoji from './AnimatedTextEmoji'
 import AnimatedText from './AnimatedText'
 
 export const Main = styled.main`
@@ -29,6 +28,7 @@ export const Main = styled.main`
 
     @media (max-width: 1024px) {
       justify-content: flex-start;
+      margin-top: 150px;
     }
 
     p {
@@ -72,14 +72,9 @@ const Login = ({ providers }) => {
   return (
     <Main>
       <section>
-        <h1>
-          <div>
-            <AnimatedTextEmoji text="👾" />
-          </div>
-          <div>
-            <AnimatedTextWord text="o que jogar ?" />
-          </div>
-        </h1>
+        <div>
+          <AnimatedTextWord text="o que jogar ?" />
+        </div>
         <div>
           <AnimatedText
             text="Lista personalizada com seus jogos favoritos e recomendações de novos

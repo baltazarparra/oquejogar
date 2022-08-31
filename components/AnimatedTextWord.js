@@ -38,7 +38,13 @@ const AnimatedTextWord = ({ text }) => {
 
   return (
     <motion.div
-      style={{ overflow: 'hidden', display: 'flex', fontSize: '2rem' }}
+      style={{
+        overflow: 'hidden',
+        display: 'flex',
+        fontSize: '3.2rem',
+        margin: '0 auto 26px',
+        fontWeight: 600
+      }}
       variants={container}
       initial="hidden"
       animate="visible"
