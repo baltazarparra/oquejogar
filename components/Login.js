@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import G from '../public/g.svg'
 
 import AnimatedTextWord from './AnimatedTextWord'
+import AnimatedTextEmoji from './AnimatedTextEmoji'
 import AnimatedText from './AnimatedText'
 
 export const Main = styled.main`
@@ -52,21 +53,9 @@ export const Main = styled.main`
     }
   }
   em {
-    color: #192534;
     position: fixed;
-    bottom: 4px;
-    left: 26px;
-    font-size: 14px;
-
-    @media (max-width: 1024px) {
-      color: #bfc3cd;
-    }
-  }
-  a:visited {
-    color: #192534;
-    @media (max-width: 1024px) {
-      color: #bfc3cd;
-    }
+    bottom: 10px;
+    left: 10px;
   }
 `
 
@@ -75,6 +64,9 @@ const Login = ({ providers }) => {
     <Main>
       <section>
         <h1>
+          <div>
+            <AnimatedTextEmoji text="👾" />
+          </div>
           <div>
             <AnimatedTextWord text="o que jogar ?" />
           </div>

@@ -29,11 +29,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 1em;
 
     @media (max-width: 1024px) {
-      height: 30vh;
-      margin-bottom: -40px;
-
-      max-width: inherit;
-      flex: none;
+      display: none;
     }
   }
 `
