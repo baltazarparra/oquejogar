@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getProviders, getSession, useSession } from 'next-auth/react'
+import { getProviders, getSession, useSession, signOut } from 'next-auth/react'
 import firebaseApp from '../firebaseApp'
 
 import Link from 'next/link'
@@ -7,7 +7,13 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Login from '../components/Login'
 
+import styled from 'styled-components'
+
 const db = firebaseApp.firestore()
+
+export const Title = styled.h1`
+  color: red;
+`
 
 export default function Home({ providers }) {
   const { data: session } = useSession()
@@ -74,7 +80,14 @@ export default function Home({ providers }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <h1>Adicionar Jogos</h1>
+        <Title>Adicionar Jogos</Title>
+        <button
+          onClick={() => {
+            signOut()
+          }}
+        >
+          Sair
+        </button>
         {posts &&
           posts.docs.map((doc) => (
             <div key={doc.id}>{JSON.stringify(doc.data().game.name)}, </div>
