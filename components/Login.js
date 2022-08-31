@@ -2,8 +2,15 @@ import { signIn } from 'next-auth/react'
 import React from 'react'
 import styled from 'styled-components'
 
+import G from '../public/g.svg'
+
 export const Main = styled.main`
   display: flex;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    height: 100vh;
+  }
 
   section {
     flex: 1;
@@ -15,15 +22,28 @@ export const Main = styled.main`
     text-align: center;
     padding: 0 20px;
 
-    @media (max-width: 800px) {
-      flex-direction: column;
-      position: relative;
-    }
-
     p {
       padding: 0 20px;
       margin: 0 auto 20px;
       max-width: 420px;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      font-family: inherit;
+      font-size: 16px;
+      padding: 10px;
+      border-radius: 3px;
+      border: solid 1px #192534;
+      svg {
+        margin-right: 10px;
+      }
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 600;
     }
   }
 `
@@ -41,7 +61,8 @@ const Login = ({ providers }) => {
           return (
             <div key={provider.name}>
               <button onClick={() => signIn(provider.id, { callbackUrl: '/' })}>
-                <div>Entrar com {provider.name}</div>
+                <G />
+                Entrar com {provider.name}
               </button>
             </div>
           )

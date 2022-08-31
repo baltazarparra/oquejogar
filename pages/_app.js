@@ -20,12 +20,21 @@ const GlobalStyle = createGlobalStyle`
 
   article {
     flex: 2;
+    max-width: 50%;
     background-image: url("/bg.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     border-radius: 20px;
     margin: 1em;
+
+    @media (max-width: 1024px) {
+      height: 30vh;
+      margin-bottom: -40px;
+
+      max-width: inherit;
+      flex: none;
+    }
   }
 `
 

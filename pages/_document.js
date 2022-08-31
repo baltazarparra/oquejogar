@@ -10,28 +10,16 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"
             href="https://fonts.gstatic.com"
             crossOrigin="true"
           />
           <link
-            rel="preload"
-            as="style"
-            href="https://fonts.googleapis.com/css2?family=Oxygen:wght@400;500&display=swap"
-          />
-          <link
+            href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,400;0,700;1,700&display=swap"
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Oxygen:wght@400;500&display=swap"
-            media="print"
-            onLoad="this.media='all'"
           />
-          <noscript>
-            <link
-              rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Oxygen:wght@400;500&display=swap"
-            />
-          </noscript>
         </Head>
         <body>
           <Main />
