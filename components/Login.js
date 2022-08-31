@@ -61,6 +61,10 @@ export const Main = styled.main`
     bottom: 6px;
     left: 6px;
     font-size: 12px;
+    a {
+      text-decoration: none;
+      color: #192534;
+    }
   }
 `
 
