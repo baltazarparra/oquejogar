@@ -1,11 +1,32 @@
 import { signIn } from 'next-auth/react'
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+import Head from 'next/head'
 
 import G from '../public/g.svg'
 
 import AnimatedTextWord from './AnimatedTextWord'
 import AnimatedText from './AnimatedText'
+
+const scrolling = keyframes`
+	100% {
+		background-position: -100% 0;
+	}
+`
+
+export const Marq = styled.b`
+  background-image: url('/brands.png');
+  position: fixed;
+  height: 200%;
+  width: 32px;
+  background-size: 32px;
+  background-position: 0 50%;
+  background-repeat: repeat-y;
+  animation: ${scrolling} 60s linear infinite;
+  transform: rotate(45deg);
+  top: -100%;
+  left: 110px;
+`
 
 export const Main = styled.main`
   display: flex;
@@ -70,39 +91,52 @@ export const Main = styled.main`
 
 const Login = ({ providers }) => {
   return (
-    <Main>
-      <section>
-        <div>
-          <AnimatedTextWord text="o que jogar ?" />
-        </div>
-        <div>
-          <AnimatedText
-            text="Lista personalizada com seus jogos favoritos e recomendações de novos
+    <>
+      <Head>
+        <title>O que jogar?</title>
+        <meta
+          name="description"
+          content="Descubra novos jogos baseado em títulos que já gosta"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Marq></Marq>
+      <Main>
+        <section>
+          <div>
+            <AnimatedTextWord text="o que jogar ?" />
+          </div>
+          <div>
+            <AnimatedText
+              text="Lista personalizada com seus jogos favoritos e recomendações de novos
           jogos, baseado em títulos que já curte"
-          />
-        </div>
-        {Object.values(providers).map((provider) => {
-          return (
-            <div key={provider.name}>
-              <button onClick={() => signIn(provider.id, { callbackUrl: '/' })}>
-                <G />
-                Entrar com {provider.name}
-              </button>
-            </div>
-          )
-        })}
-      </section>
-      <article></article>
-      <em>
-        <a
-          href="https://baltazarparra.github.io/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          @baltazarparra
-        </a>
-      </em>
-    </Main>
+            />
+          </div>
+          {Object.values(providers).map((provider) => {
+            return (
+              <div key={provider.name}>
+                <button
+                  onClick={() => signIn(provider.id, { callbackUrl: '/' })}
+                >
+                  <G />
+                  Entrar com {provider.name}
+                </button>
+              </div>
+            )
+          })}
+        </section>
+        <article></article>
+        <em>
+          <a
+            href="https://baltazarparra.github.io/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            @baltazarparra
+          </a>
+        </em>
+      </Main>
+    </>
   )
 }
 
