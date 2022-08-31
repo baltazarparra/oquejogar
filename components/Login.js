@@ -1,5 +1,10 @@
 import { signIn } from 'next-auth/react'
 import React from 'react'
+import styled from 'styled-components'
+
+export const Title = styled.h1`
+  color: red;
+`
 
 const Login = ({ providers }) => {
   return (
@@ -13,7 +18,7 @@ const Login = ({ providers }) => {
         return (
           <div key={provider.name}>
             <button onClick={() => signIn(provider.id, { callbackUrl: '/' })}>
-              <span>Entrar com {provider.name}</span>
+              <Title>Entrar com {provider.name}</Title>
             </button>
           </div>
         )
