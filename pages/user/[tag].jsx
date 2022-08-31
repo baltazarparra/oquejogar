@@ -19,9 +19,7 @@ export default function PostPage() {
       })
       setList(items)
     })
-  }, [])
-
-  console.log(list)
+  }, [router.query.tag])
 
   return (
     <>

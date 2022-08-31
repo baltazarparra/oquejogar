@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { getProviders, getSession, useSession, signOut } from 'next-auth/react'
 import firebaseApp from '../firebaseApp'
 
@@ -20,14 +20,14 @@ export default function Home({ providers }) {
   const [inputValue, setInputValue] = useState('')
   const [searchTerm, setSearchTerm] = useState()
   const [games, setGames] = useState()
-  const [posts, setPosts] = useState()
+  const [list, setList] = useState()
   const [slug, setSlug] = useState()
   const [refetch, setRefetch] = useState()
 
-  const fetchPosts = async () => {
+  const fetchGames = async () => {
     const response = slug && db.collection(slug)
     const data = await response?.get()
-    setPosts(data)
+    setList(data)
   }
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Home({ providers }) {
   }, [session])
 
   useEffect(() => {
-    if (session) fetchPosts()
+    if (session) fetchGames()
   }, [session, refetch])
 
   useEffect(() => {
@@ -67,17 +67,7 @@ export default function Home({ providers }) {
     }
   }, [searchTerm])
 
-  if (!session)
-    return (
-      <>
-        <h1>oquejogar.com</h1>
-        <p>
-          Lista personalizada com seus jogos favoritos e recomendações de novos
-          jogos, baseado em títulos que já curte
-        </p>
-        <Login providers={providers} />
-      </>
-    )
+  if (!session) return <Login providers={providers} />
 
   return (
     <div>
@@ -98,8 +88,8 @@ export default function Home({ providers }) {
         >
           Sair
         </button>
-        {posts &&
-          posts.docs.map((doc) => (
+        {list &&
+          list.docs.map((doc) => (
             <div key={doc.id}>{JSON.stringify(doc.data().game.name)}, </div>
           ))}
         <Image
