@@ -4,6 +4,9 @@ import styled from 'styled-components'
 
 import G from '../public/g.svg'
 
+import AnimatedTextWord from './AnimatedTextWord'
+import AnimatedText from './AnimatedText'
+
 export const Main = styled.main`
   display: flex;
 
@@ -45,7 +48,7 @@ export const Main = styled.main`
 
     h1 {
       font-size: 42px;
-      font-weight: 600;
+      font-weight: bold;
     }
   }
 `
@@ -54,11 +57,17 @@ const Login = ({ providers }) => {
   return (
     <Main>
       <section>
-        <h1>oquejogar.com</h1>
-        <p>
-          Lista personalizada com seus jogos favoritos e recomendações de novos
-          jogos, baseado em títulos que já curte
-        </p>
+        <h1>
+          <div>
+            <AnimatedTextWord text="o que jogar ?" />
+          </div>
+        </h1>
+        <div>
+          <AnimatedText
+            text="Lista personalizada com seus jogos favoritos e recomendações de novos
+          jogos, baseado em títulos que já curte"
+          />
+        </div>
         {Object.values(providers).map((provider) => {
           return (
             <div key={provider.name}>
