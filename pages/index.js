@@ -67,7 +67,17 @@ export default function Home({ providers }) {
     }
   }, [searchTerm])
 
-  if (!session) return <Login providers={providers} />
+  if (!session)
+    return (
+      <>
+        <h1>oquejogar.com</h1>
+        <p>
+          Lista personalizada com seus jogos favoritos e recomendações de novos
+          jogos, baseado em títulos que já curte
+        </p>
+        <Login providers={providers} />
+      </>
+    )
 
   return (
     <div>
@@ -80,7 +90,7 @@ export default function Home({ providers }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <Title>Adicionar Jogos</Title>
+        <Title>Adicione os títulos que já jogou a sua lista pessoal</Title>
         <button
           onClick={() => {
             signOut()
@@ -100,7 +110,7 @@ export default function Home({ providers }) {
         />
         <div>
           <input
-            placeholder="Procurar jogos"
+            placeholder="Procurar seus jogos..."
             value={inputValue}
             type="text"
             onChange={(e) => setInputValue(e.target.value)}
@@ -134,7 +144,7 @@ export default function Home({ providers }) {
         ))}
       {session.user.uid && (
         <Link href={`/user/${slug}`}>
-          <a>{session.user.name}</a>
+          <a>Ver minha lista</a>
         </Link>
       )}
     </div>

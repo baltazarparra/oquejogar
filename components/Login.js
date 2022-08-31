@@ -10,7 +10,7 @@ const Login = ({ providers }) => {
           return (
             <div key={provider.name}>
               <button onClick={() => signIn(provider.id, { callbackUrl: '/' })}>
-                <span>Sign in with {provider.name}</span>
+                <span>Entrar com {provider.name}</span>
               </button>
             </div>
           )

@@ -25,7 +25,8 @@ export default function PostPage() {
 
   return (
     <>
-      {list && list.map((item) => <h1 key={item.game.id}>{item.game.name}</h1>)}
+      <h1>Já joguei</h1>
+      {list && list.map((item) => <p key={item.game.id}>{item.game.name}</p>)}
       <Link href="/">
         <a>back</a>
       </Link>
