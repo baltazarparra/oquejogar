@@ -10,6 +10,7 @@ export const Main = styled.main`
   @media (max-width: 1024px) {
     flex-direction: column;
     height: 100vh;
+    overflow: hidden;
   }
 
   section {
@@ -36,6 +37,7 @@ export const Main = styled.main`
       padding: 10px;
       border-radius: 3px;
       border: solid 1px #192534;
+      cursor: pointer;
       svg {
         margin-right: 10px;
       }
