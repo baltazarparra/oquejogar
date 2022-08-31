@@ -51,6 +51,23 @@ export const Main = styled.main`
       font-weight: bold;
     }
   }
+  em {
+    color: #192534;
+    position: fixed;
+    bottom: 4px;
+    left: 26px;
+    font-size: 14px;
+
+    @media (max-width: 1024px) {
+      color: #bfc3cd;
+    }
+  }
+  a:visited {
+    color: #192534;
+    @media (max-width: 1024px) {
+      color: #bfc3cd;
+    }
+  }
 `
 
 const Login = ({ providers }) => {
@@ -80,6 +97,15 @@ const Login = ({ providers }) => {
         })}
       </section>
       <article></article>
+      <em>
+        <a
+          href="https://baltazarparra.github.io/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          @baltazarparra
+        </a>
+      </em>
     </Main>
   )
 }
