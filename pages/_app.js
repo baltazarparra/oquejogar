@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
   article {
     flex: 2;
     max-width: 50%;
-    background-image: url("/bg.png");
+    background-image: url("/bg.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
