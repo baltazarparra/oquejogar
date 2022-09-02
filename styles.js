@@ -33,6 +33,8 @@ export const List = styled.ul`
 
 export const Header = styled.header`
   display: flex;
+  justify-content: space-between;
+  width: 100%;
   align-items: center;
   position: fixed;
   top: 10px;
@@ -46,8 +48,23 @@ export const Header = styled.header`
     margin-right: 10px;
     font-size: 14px;
   }
+
   a:visited {
     color: #192534;
+  }
+
+  section {
+    display: flex;
+    align-items: center;
+  }
+
+  button {
+    font-family: inherit;
+    border: 0;
+    margin-left: 2em;
+    border-radius: 4px;
+    padding: 0.4em 1em;
+    cursor: pointer;
   }
 `
 
@@ -60,6 +77,7 @@ export const Title = styled.h1`
 `
 
 export const Search = styled.input`
+  filter: grayscale(1);
   background-color: rgba(217, 217, 217, 70%);
   border-radius: 3px;
   border: solid 1px #192534;
@@ -68,6 +86,8 @@ export const Search = styled.input`
   color: #192534;
   line-height: 2;
   width: 100%;
+  padding-left: 10px;
+  box-sizing: border-box;
 
   &:focus {
     outline: solid 1px #192534;

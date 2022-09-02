@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getProviders, getSession, useSession } from 'next-auth/react'
+import { getProviders, getSession, useSession, signOut } from 'next-auth/react'
 import firebaseApp from '../firebaseApp'
 
 import Link from 'next/link'
@@ -79,15 +79,18 @@ export default function Home({ providers }) {
         <S.Header>
           {session.user.uid && (
             <>
-              <Link href={`/user/${slug}`}>
-                <a>{session?.user.name}</a>
-              </Link>
-              <Image
-                width="34px"
-                height="34px"
-                src={session?.user.image}
-                alt={session?.user.name}
-              />
+              <button onClick={() => signOut()}>Sair</button>
+              <section>
+                <Link href={`/user/${slug}`}>
+                  <a>{session?.user.name}</a>
+                </Link>
+                <Image
+                  width="34px"
+                  height="34px"
+                  src={session?.user.image}
+                  alt={session?.user.name}
+                />
+              </section>
             </>
           )}
         </S.Header>
@@ -120,7 +123,7 @@ export default function Home({ providers }) {
         )}
         <div>
           <S.Search
-            placeholder="Procurar seus jogos..."
+            placeholder="🔎Procurar seus jogos..."
             value={inputValue}
             type="text"
             onChange={(e) => setInputValue(e.target.value)}

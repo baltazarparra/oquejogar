@@ -41,15 +41,21 @@ export default function PostPage() {
       <S.Header>
         {session?.user.uid && (
           <>
-            <Link href={`/`}>
-              <a>{session?.user.name}</a>
+            <Link href="/">
+              <button>Adicionar mais jogos</button>
             </Link>
-            <Image
-              width="34px"
-              height="34px"
-              src={session?.user.image}
-              alt={session?.user.name}
-            />
+
+            <section>
+              <Link href={`/`}>
+                <a>{session?.user.name}</a>
+              </Link>
+              <Image
+                width="34px"
+                height="34px"
+                src={session?.user.image}
+                alt={session?.user.name}
+              />
+            </section>
           </>
         )}
       </S.Header>
