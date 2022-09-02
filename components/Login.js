@@ -26,6 +26,12 @@ export const Marq = styled.b`
   transform: rotate(45deg);
   top: -100%;
   left: 110px;
+  transition: 0.3s;
+
+  &:hover {
+    animation: ${scrolling} 1s linear infinite;
+    transform: rotate(45deg) scale(1.6);
+  }
 `
 
 export const Main = styled.main`
