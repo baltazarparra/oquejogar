@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const Main = styled.main`
+  max-width: 100%;
+  padding: 1em;
   max-width: 768px;
   margin: 0 auto;
 `
@@ -70,10 +72,18 @@ export const Header = styled.header`
 
 export const Title = styled.h1`
   color: #192534;
-  font-size: 36px;
+  font-size: 28px;
+  line-height: 1.1;
   text-align: center;
   margin-top: 100px;
   margin-bottom: 0;
+
+  @media (min-width: 1024px) {
+    font-size: 36px;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 0;
+  }
 `
 
 export const Search = styled.input`
@@ -138,7 +148,7 @@ export const Anchor = styled.a`
   width: 100%;
   left: 0;
   bottom: 0;
-  padding: 1em;
+  padding: 1em 0;
   text-align: center;
   background-color: #bfc3cd;
   cursor: pointer;
