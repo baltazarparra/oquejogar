@@ -29,7 +29,7 @@ export const Marq = styled.b`
   transition: 0.3s;
 
   &:hover {
-    animation: ${scrolling} 1s linear infinite;
+    animation-duration: 1s;
     transform: rotate(45deg) scale(1.6);
   }
 `
