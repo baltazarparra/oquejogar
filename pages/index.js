@@ -7,7 +7,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Login from '../components/Login'
 
-import * as S from './styles'
+import * as S from '../styles'
 
 const db = firebaseApp.firestore()
 

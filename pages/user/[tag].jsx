@@ -7,7 +7,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Head from 'next/head'
 
-import * as S from '../styles'
+import * as S from '../../styles'
 
 import { RWebShare } from 'react-web-share'
 
