@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react'
-import { getProviders, getSession, useSession, signOut } from 'next-auth/react'
+import { useState, useEffect } from 'react'
+import { getProviders, getSession, useSession } from 'next-auth/react'
 import firebaseApp from '../firebaseApp'
 
 import Link from 'next/link'
@@ -7,13 +7,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Login from '../components/Login'
 
-import styled from 'styled-components'
+import * as S from './styles'
 
 const db = firebaseApp.firestore()
-
-export const Title = styled.h1`
-  color: red;
-`
 
 export default function Home({ providers }) {
   const { data: session } = useSession()
@@ -70,7 +66,7 @@ export default function Home({ providers }) {
   if (!session) return <Login providers={providers} />
 
   return (
-    <div>
+    <S.Main>
       <Head>
         <title>O que jogar?</title>
         <meta
@@ -80,26 +76,50 @@ export default function Home({ providers }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <Title>Adicione os títulos que já jogou a sua lista pessoal</Title>
-        <button
-          onClick={() => {
-            signOut()
-          }}
-        >
-          Sair
-        </button>
-        {list &&
-          list.docs.map((doc) => (
-            <div key={doc.id}>{JSON.stringify(doc.data().game.name)}, </div>
-          ))}
-        <Image
-          width="100px"
-          height="100px"
-          src={session?.user.image}
-          alt={session?.user.name}
-        />
+        <S.Header>
+          {session.user.uid && (
+            <>
+              <Link href={`/user/${slug}`}>
+                <a>{session?.user.name}</a>
+              </Link>
+              <Image
+                width="34px"
+                height="34px"
+                src={session?.user.image}
+                alt={session?.user.name}
+              />
+            </>
+          )}
+        </S.Header>
+        <S.Title>Adicione os títulos que já jogou a sua lista pessoal</S.Title>
+        {list && (
+          <S.List>
+            {list.docs.map((doc) => (
+              <li
+                key={doc.id}
+                style={{
+                  backgroundImage: `url(${doc.data().game.background_image})`,
+                  backgroundPosition: 'center',
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  height: '80px',
+                  listStyle: 'none',
+                  lineHeight: '1.8',
+                  fontSize: '14px',
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  marginLeft: '-10px',
+                  marginBottom: '10px',
+                  width: '60px',
+                  borderRadius: '6px',
+                  border: 'solid 2px white'
+                }}
+              ></li>
+            ))}
+          </S.List>
+        )}
         <div>
-          <input
+          <S.Search
             placeholder="Procurar seus jogos..."
             value={inputValue}
             type="text"
@@ -107,37 +127,38 @@ export default function Home({ providers }) {
           />
         </div>
       </div>
-      {games &&
-        slug &&
-        games.map((game) => (
-          <div key={game.id}>
-            <p>{game.name}</p>
-            <button
+      {games && slug && (
+        <S.Results>
+          {games.map((game) => (
+            <S.Card
               onClick={() => {
                 setRefetch(!refetch)
                 db.collection(slug).doc(game.slug).set({
                   game
                 })
               }}
+              key={game.id}
             >
-              Add
-            </button>
-            {game.background_image && (
-              <Image
-                width="160"
-                height="100"
-                src={game.background_image}
-                alt={session.user.name}
-              />
-            )}
-          </div>
-        ))}
-      {session.user.uid && (
+              {game.background_image && (
+                <Image
+                  width="160"
+                  height="100"
+                  src={game.background_image}
+                  alt={session.user.name}
+                />
+              )}
+              <p>{game.name}</p>
+              <button>Adicionar</button>
+            </S.Card>
+          ))}
+        </S.Results>
+      )}
+      {list?.docs.length && (
         <Link href={`/user/${slug}`}>
-          <a>Ver minha lista</a>
+          <S.Anchor>Ver minha lista</S.Anchor>
         </Link>
       )}
-    </div>
+    </S.Main>
   )
 }
 

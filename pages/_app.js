@@ -3,19 +3,15 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   html {
-    box-sizing: border-box;
     background-color: #BFC3CD;
-    display: block;
-    height: 100%;
-    margin: 0;
-    padding: 0;
     color: #192534;
+    font-family: 'Roboto Mono', monospace;
   }
 
   body {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto Mono', monospace;
   }
 
   article {
