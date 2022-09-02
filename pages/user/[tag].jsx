@@ -31,7 +31,7 @@ export default function PostPage() {
   return (
     <S.Main>
       <Head>
-        <title>Gamer: {router.query.tag}</title>
+        <title>{router.query.tag}</title>
         <meta
           name="description"
           content="Descubra novos jogos baseado em títulos que já gosta"
@@ -59,7 +59,7 @@ export default function PostPage() {
           </>
         )}
       </S.Header>
-      <S.Title>Já joguei</S.Title>
+      <S.Title>Jogos favoritos de {router.query.tag}</S.Title>
       {list && (
         <S.Results>
           {list.map((item) => (
@@ -75,17 +75,21 @@ export default function PostPage() {
           ))}
         </S.Results>
       )}
-      <S.Anchor>
-        <RWebShare
-          data={{
-            text: 'Meus jogos favoritos',
-            url: `https://oquejogar.com/user/${router.query.tag}`,
-            title: 'oquejogar.com'
-          }}
-        >
-          <span>Compartilhar</span>
-        </RWebShare>
-      </S.Anchor>
+      {session?.user ? (
+        <S.Anchor>
+          <RWebShare
+            data={{
+              text: 'Meus jogos favoritos',
+              url: `https://oquejogar.com/user/${router.query.tag}`,
+              title: 'oquejogar.com'
+            }}
+          >
+            <span>Compartilhar</span>
+          </RWebShare>
+        </S.Anchor>
+      ) : (
+        <S.Anchor href="/">Criar minha lista</S.Anchor>
+      )}
     </S.Main>
   )
 }
