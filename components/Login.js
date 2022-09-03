@@ -49,7 +49,7 @@ const Login = ({ providers }) => {
             )
           })}
         </S.Box>
-        <article></article>
+        <S.Hero></S.Hero>
         <S.Footer>
           <S.Baltz
             href="https://baltazarparra.github.io/"

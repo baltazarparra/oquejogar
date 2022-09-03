@@ -78,3 +78,18 @@ export const Baltz = styled.a`
   text-decoration: none;
   color: #192534;
 `
+
+export const Hero = styled.aside`
+  flex: 2;
+  max-width: 50%;
+  background-image: url('/bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+  margin: 1em;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`

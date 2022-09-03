@@ -6,27 +6,26 @@ const GlobalStyle = createGlobalStyle`
     background-color: #BFC3CD;
     color: #192534;
     font-family: 'Roboto Mono', monospace;
+    box-sizing: border-box;
   }
 
-  body {
-    box-sizing: border-box;
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  body, h1, h2, h3, h4, h5, h6, p, ol, ul {
     margin: 0;
     padding: 0;
+    font-weight: normal;
   }
 
-  article {
-    flex: 2;
-    max-width: 50%;
-    background-image: url("/bg.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    border-radius: 20px;
-    margin: 1em;
+  ol, ul {
+    list-style: none;
+  }
 
-    @media (max-width: 1024px) {
-      display: none;
-    }
+  img {
+    max-width: 100%;
+    height: auto;
   }
 `
 
