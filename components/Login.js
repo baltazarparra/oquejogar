@@ -27,38 +27,40 @@ const Login = ({ providers }) => {
       <S.Marquee></S.Marquee>
       <S.Main>
         <S.Box>
-          <div>
-            <AnimatedTextWord text="o que jogar ?" />
-          </div>
-          <div>
-            <AnimatedText
-              text="Lista personalizada com seus jogos favoritos e recomendações de novos
-          jogos, baseado em títulos que já curte"
-            />
-          </div>
-          {Object.values(providers).map((provider) => {
-            return (
-              <div key={provider.name}>
-                <S.Button
-                  onClick={() => signIn(provider.id, { callbackUrl: '/' })}
-                >
-                  <G />
-                  Entrar com {provider.name}
-                </S.Button>
-              </div>
-            )
-          })}
+          <S.Inner>
+            <div>
+              <AnimatedTextWord text="o que jogar . com" />
+            </div>
+            <div>
+              <AnimatedText
+                text="Lista personalizada com seus jogos favoritos e recomendações de novos
+            jogos, baseado em títulos que já curte"
+              />
+            </div>
+            {Object.values(providers).map((provider) => {
+              return (
+                <div key={provider.name}>
+                  <S.Button
+                    onClick={() => signIn(provider.id, { callbackUrl: '/' })}
+                  >
+                    <G />
+                    Entrar com {provider.name}
+                  </S.Button>
+                </div>
+              )
+            })}
+          </S.Inner>
+          <S.Footer>
+            <S.Baltz
+              href="https://baltazarparra.github.io/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              © 2022 Baltazar Parra.
+            </S.Baltz>
+          </S.Footer>
         </S.Box>
         <S.Hero></S.Hero>
-        <S.Footer>
-          <S.Baltz
-            href="https://baltazarparra.github.io/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            baltazarparra
-          </S.Baltz>
-        </S.Footer>
       </S.Main>
     </>
   )

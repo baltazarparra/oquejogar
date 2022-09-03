@@ -38,8 +38,8 @@ const AnimatedTextWord = ({ text }) => {
       style={{
         overflow: 'hidden',
         display: 'flex',
-        fontSize: '3.2rem',
-        margin: '0 auto 26px',
+        fontSize: '22px',
+        margin: '0 auto',
         fontWeight: 600
       }}
       variants={container}

@@ -38,8 +38,8 @@ const AnimatedTextWord = ({ text }) => {
       style={{
         display: 'block',
         maxWidth: '360px',
-        marginBottom: '30px',
-        fontSize: '18px',
+        marginBottom: '10px',
+        fontSize: '16px',
         padding: '10px'
       }}
       variants={container}

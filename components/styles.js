@@ -31,23 +31,30 @@ export const Box = styled.div`
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   text-align: center;
   padding: 0 20px;
+  max-width: 768px;
 
   @media (max-width: 1024px) {
-    justify-content: flex-start;
-    margin-top: 150px;
+    justify-content: space-between;
   }
+`
+
+export const Inner = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 `
 
 export const Button = styled.button`
   display: flex;
   align-items: center;
   font-family: inherit;
-  font-size: 16px;
-  padding: 10px;
+  font-size: 14px;
+  padding: 6px;
   border-radius: 3px;
   border: solid 1px #192534;
   cursor: pointer;
@@ -65,6 +72,7 @@ export const Button = styled.button`
 `
 
 export const Main = styled.main`
+  position: relative;
   display: flex;
 
   @media (max-width: 1024px) {
@@ -74,11 +82,13 @@ export const Main = styled.main`
   }
 `
 
-export const Footer = styled.em`
-  position: fixed;
+export const Footer = styled.span`
+  width: 100%;
   bottom: 6px;
   left: 6px;
   font-size: 12px;
+  border-top: solid 1px #a1a1a1;
+  padding: 0.4em;
 `
 
 export const Baltz = styled.a`
@@ -88,7 +98,6 @@ export const Baltz = styled.a`
 
 export const Hero = styled.aside`
   flex: 2;
-  max-width: 50%;
   background-image: url('/bg.jpg');
   background-repeat: no-repeat;
   background-position: center;
