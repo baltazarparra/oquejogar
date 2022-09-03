@@ -54,7 +54,7 @@ export const Button = styled.button`
   align-items: center;
   font-family: inherit;
   font-size: 14px;
-  padding: 6px;
+  padding: 10px;
   border-radius: 3px;
   border: solid 1px #192534;
   cursor: pointer;

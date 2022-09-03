@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Main = styled.main`
   max-width: 100%;
-  padding: 1em;
+  padding: 0 1em;
   max-width: 768px;
   margin: 0 auto;
 `
@@ -12,14 +12,11 @@ export const List = styled.ul`
   text-align: center;
   align-items: baseline;
   padding: 0;
-  position: sticky;
-  top: 20px;
 
   li {
     position: relative;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    transition: 0.3s;
 
     &:first-child {
       margin-left: 0 !important;
@@ -32,15 +29,31 @@ export const List = styled.ul`
     }
   }
 `
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: space-between;
+`
 
 export const Header = styled.header`
+  position: fixed;
   display: flex;
   justify-content: space-between;
-  width: 100%;
   align-items: center;
-  position: fixed;
-  top: 10px;
-  right: 10px;
+  width: 100%;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-bottom: solid 1px #a1a1a1;
+  padding-bottom: 10px;
+  right: 0;
+  top: 0;
+  background: #ccd1dd;
+  z-index: 9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   img {
     border-radius: 100%;
@@ -72,27 +85,25 @@ export const Header = styled.header`
 
 export const Title = styled.h1`
   color: #192534;
-  font-size: 28px;
+  font-size: 20px;
   line-height: 1.1;
   text-align: center;
-  margin-top: 100px;
-  margin-bottom: 0;
+  margin-top: 80px;
+  margin-bottom: 20px;
 
   @media (min-width: 1024px) {
-    font-size: 36px;
+    font-size: 30px;
     text-align: center;
-    margin-top: 100px;
-    margin-bottom: 0;
+    margin: 120px 0 40px;
   }
 `
 
 export const Search = styled.input`
-  filter: grayscale(1);
   background-color: rgba(217, 217, 217, 70%);
   border-radius: 3px;
   border: solid 1px #192534;
   font-family: 'Roboto Mono', monospace;
-  font-size: 16px;
+  font-size: 14px;
   color: #192534;
   line-height: 2;
   width: 100%;
@@ -109,7 +120,11 @@ export const Results = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-bottom: 100px;
+  margin: 20px 0;
+
+  @media (min-width: 1024px) {
+    margin: 40px 0;
+  }
 `
 
 export const Card = styled.li`
@@ -144,7 +159,6 @@ export const Card = styled.li`
 `
 
 export const Anchor = styled.a`
-  position: fixed;
   width: 100%;
   left: 0;
   bottom: 0;
@@ -159,4 +173,52 @@ export const Anchor = styled.a`
   &:hover {
     background-color: #8a90a1;
   }
+`
+
+export const Footer = styled.span`
+  width: 100%;
+  bottom: 6px;
+  left: 6px;
+  font-size: 12px;
+  border-top: solid 1px #a1a1a1;
+  padding: 1em;
+  text-align: center;
+`
+
+export const Baltz = styled.a`
+  text-decoration: none;
+  color: #192534;
+`
+
+export const Button = styled.button`
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 3px;
+  border: solid 1px #192534;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: 0.3s;
+  width: 200px;
+  justify-content: center;
+  margin-bottom: 10px;
+
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+
+  svg {
+    margin-right: 10px;
+  }
+`
+
+export const Outer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 `

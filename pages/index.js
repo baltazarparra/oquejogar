@@ -97,73 +97,91 @@ export default function Home({ providers }) {
             </>
           )}
         </S.Header>
-        <S.Title>Adicione os títulos que já jogou a sua lista pessoal</S.Title>
-        {list && (
-          <S.List>
-            {list.docs.map((doc) => (
-              <li
-                key={doc.id}
-                style={{
-                  backgroundImage: `url(${doc.data().game.background_image})`,
-                  backgroundPosition: 'center',
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
-                  height: '80px',
-                  listStyle: 'none',
-                  lineHeight: '1.8',
-                  fontSize: '14px',
-                  fontWeight: 'bold',
-                  fontStyle: 'italic',
-                  marginLeft: '-10px',
-                  marginBottom: '10px',
-                  width: '60px',
-                  borderRadius: '6px',
-                  border: 'solid 2px white'
-                }}
-              ></li>
-            ))}
-          </S.List>
-        )}
-        <div>
-          <S.Search
-            placeholder="🔎Procurar seus jogos..."
-            value={inputValue}
-            type="text"
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-        </div>
+        <S.Container>
+          <div>
+            <S.Title>Busque seus jogos favoritos para montar sua lista</S.Title>
+            {list && (
+              <S.List>
+                {list.docs.map((doc) => (
+                  <li
+                    key={doc.id}
+                    style={{
+                      backgroundImage: `url(${
+                        doc.data().game.background_image
+                      })`,
+                      backgroundPosition: 'center',
+                      backgroundSize: 'cover',
+                      backgroundRepeat: 'no-repeat',
+                      height: '80px',
+                      listStyle: 'none',
+                      lineHeight: '1.8',
+                      fontSize: '14px',
+                      fontWeight: 'bold',
+                      fontStyle: 'italic',
+                      marginLeft: '-10px',
+                      marginBottom: '10px',
+                      width: '60px',
+                      borderRadius: '6px',
+                      border: 'solid 2px white'
+                    }}
+                  ></li>
+                ))}
+              </S.List>
+            )}
+            <div>
+              <S.Search
+                placeholder="Procurar seus jogos..."
+                value={inputValue}
+                type="text"
+                onChange={(e) => setInputValue(e.target.value)}
+              />
+            </div>
+            {games && inputValue && (
+              <S.Results>
+                {games.map((game) => (
+                  <S.Card
+                    onClick={() => {
+                      setRefetch(!refetch)
+                      setInputValue('')
+                      db.collection(slug).doc(game.slug).set({
+                        game
+                      })
+                    }}
+                    key={game.id}
+                  >
+                    {game.background_image && (
+                      <Image
+                        width="160"
+                        height="100"
+                        src={game.background_image}
+                        alt={session.user.name}
+                      />
+                    )}
+                    <p>{game.name}</p>
+                    <button>Adicionar</button>
+                  </S.Card>
+                ))}
+              </S.Results>
+            )}
+          </div>
+          <S.Outer>
+            {list?.docs.length > 0 && (
+              <Link href={`/user/${slug}`}>
+                <S.Button>Ver minha lista</S.Button>
+              </Link>
+            )}
+            <S.Footer>
+              <S.Baltz
+                href="https://baltazarparra.github.io/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                © 2022 Baltazar Parra.
+              </S.Baltz>
+            </S.Footer>
+          </S.Outer>
+        </S.Container>
       </div>
-      {games && slug && (
-        <S.Results>
-          {games.map((game) => (
-            <S.Card
-              onClick={() => {
-                setRefetch(!refetch)
-                db.collection(slug).doc(game.slug).set({
-                  game
-                })
-              }}
-              key={game.id}
-            >
-              {game.background_image && (
-                <Image
-                  width="160"
-                  height="100"
-                  src={game.background_image}
-                  alt={session.user.name}
-                />
-              )}
-              <p>{game.name}</p>
-              <button>Adicionar</button>
-            </S.Card>
-          ))}
-        </S.Results>
-      )}
-      {list?.docs.length && (
-        <Link href={`/user/${slug}`}>
-          <S.Anchor>Ver minha lista</S.Anchor>
-        </Link>
-      )}
     </S.Main>
   )
 }
