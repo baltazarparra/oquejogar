@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 const AnimatedTextWord = ({ text }) => {
   const words = text.split('')
 
-  // Variants for Container of words.
   const container = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
@@ -12,8 +11,6 @@ const AnimatedTextWord = ({ text }) => {
       transition: { staggerChildren: 0.009, delayChildren: 0.009 * i }
     })
   }
-
-  // Variants for each word.
 
   const child = {
     visible: {
