@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 
-import firebaseApp from '../../firebaseApp'
+import firebaseApp from '../firebaseApp'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Head from 'next/head'
 
-import * as S from '../../styles'
+import * as S from '../styles'
 
 import { RWebShare } from 'react-web-share'
 
@@ -83,7 +83,7 @@ export default function PostPage() {
           <RWebShare
             data={{
               text: 'Meus jogos favoritos',
-              url: `https://oquejogar.com/user/${router.query.tag}`,
+              url: `https://oquejogar.com/${router.query.tag}`,
               title: 'oquejogar.com'
             }}
           >

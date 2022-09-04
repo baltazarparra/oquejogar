@@ -84,7 +84,7 @@ export default function Home({ providers }) {
             <>
               <button onClick={() => signOut()}>Sair</button>
               <section>
-                <Link href={`/user/${slug}`}>
+                <Link href={`/${slug}`}>
                   <a>{session?.user.name}</a>
                 </Link>
                 <Image
@@ -166,7 +166,7 @@ export default function Home({ providers }) {
           </div>
           <S.Outer>
             {list?.docs.length > 0 && (
-              <Link href={`/user/${slug}`}>
+              <Link href={`/${slug}`}>
                 <S.Button>Ver minha lista</S.Button>
               </Link>
             )}
