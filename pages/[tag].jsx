@@ -45,12 +45,12 @@ export default function PostPage() {
         {session?.user.uid && (
           <>
             <Link href="/">
-              <button>Adicionar mais jogos</button>
+              <S.Link>Adicionar Jogos</S.Link>
             </Link>
 
             <section>
-              <Link href={`/`}>
-                <a>{session?.user.name}</a>
+              <Link href={`/`} passHref>
+                <S.Username>{session?.user.name}</S.Username>
               </Link>
               <Image
                 width="34px"
@@ -62,7 +62,9 @@ export default function PostPage() {
           </>
         )}
       </S.Header>
-      <S.Title>Jogos favoritos de {router.query.tag}</S.Title>
+      <S.Title>
+        Jogos favoritos de {router.query.tag.replace(/[0-9]/g, '')}
+      </S.Title>
       {list && (
         <S.Results>
           {list.map((item) => (

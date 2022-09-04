@@ -84,8 +84,8 @@ export default function Home({ providers }) {
             <>
               <button onClick={() => signOut()}>Sair</button>
               <section>
-                <Link href={`/${slug}`}>
-                  <a>{session?.user.name}</a>
+                <Link href={`/${slug}`} passHref>
+                  <S.Username>{session?.user.name}</S.Username>
                 </Link>
                 <Image
                   width="34px"

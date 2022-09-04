@@ -83,6 +83,14 @@ export const Header = styled.header`
   }
 `
 
+export const Username = styled.a`
+  width: 190px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: right;
+`
+
 export const Title = styled.h1`
   color: #192534;
   font-size: 20px;
@@ -221,4 +229,8 @@ export const Outer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+`
+
+export const Link = styled.button`
+  margin: 0 !important;
 `
