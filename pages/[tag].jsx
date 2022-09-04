@@ -62,39 +62,54 @@ export default function PostPage() {
           </>
         )}
       </S.Header>
-      <S.Title>
-        Jogos favoritos de {router.query.tag.replace(/[0-9]/g, '')}
-      </S.Title>
-      {list && (
-        <S.Results>
-          {list.map((item) => (
-            <S.Card key={item.game.id}>
-              <Image
-                width="160"
-                height="100"
-                src={item.game.background_image}
-                alt={item.game.name}
-              />
-              <p>{item.game.name}</p>
-            </S.Card>
-          ))}
-        </S.Results>
-      )}
-      {session?.user ? (
-        <S.Anchor>
-          <RWebShare
-            data={{
-              text: 'Meus jogos favoritos',
-              url: `https://oquejogar.com/${router.query.tag}`,
-              title: 'oquejogar.com'
-            }}
-          >
-            <span>Compartilhar</span>
-          </RWebShare>
-        </S.Anchor>
-      ) : (
-        <S.Anchor href="/">Criar minha lista</S.Anchor>
-      )}
+      <S.Container>
+        <div>
+          <S.Title>
+            Jogos favoritos de {router.query.tag.replace(/[0-9]/g, '')}
+          </S.Title>
+          {list && (
+            <S.Results>
+              {list.map((item) => (
+                <S.Card key={item.game.id}>
+                  <Image
+                    width="160"
+                    height="100"
+                    src={item.game.background_image}
+                    alt={item.game.name}
+                  />
+                  <p>{item.game.name}</p>
+                </S.Card>
+              ))}
+            </S.Results>
+          )}
+        </div>
+        <S.Outer>
+          {session?.user ? (
+            <RWebShare
+              data={{
+                text: 'Meus jogos favoritos',
+                url: `https://oquejogar.com/${router.query.tag}`,
+                title: 'oquejogar.com'
+              }}
+            >
+              <S.Button>Compartilhar</S.Button>
+            </RWebShare>
+          ) : (
+            <Link href={`/`}>
+              <S.Button>Criar minha lista</S.Button>
+            </Link>
+          )}
+          <S.Footer>
+            <S.Baltz
+              href="https://baltazarparra.github.io/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              © 2022 Baltazar Parra.
+            </S.Baltz>
+          </S.Footer>
+        </S.Outer>
+      </S.Container>
     </S.Main>
   )
 }
