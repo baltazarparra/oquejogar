@@ -45,7 +45,7 @@ export default function PostPage() {
         {session?.user.uid && (
           <>
             <Link href="/">
-              <S.Link>Adicionar Jogos</S.Link>
+              <S.Link>Adicionar jogos</S.Link>
             </Link>
 
             <section>

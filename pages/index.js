@@ -82,7 +82,7 @@ export default function Home({ providers }) {
         <S.Header>
           {session.user.uid && (
             <>
-              <button onClick={() => signOut()}>Sair</button>
+              <S.Link onClick={() => signOut()}>Sair</S.Link>
               <section>
                 <Link href={`/${slug}`} passHref>
                   <S.Username>{session?.user.name}</S.Username>

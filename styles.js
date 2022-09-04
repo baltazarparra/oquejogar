@@ -84,11 +84,17 @@ export const Header = styled.header`
 `
 
 export const Username = styled.a`
-  width: 190px;
+  max-width: 150px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
   text-align: right;
+  margin-right: 0 !important;
+  padding-right: 10px;
+
+  @media (min-width: 1024px) {
+    max-width: 100%;
+  }
 `
 
 export const Title = styled.h1`
