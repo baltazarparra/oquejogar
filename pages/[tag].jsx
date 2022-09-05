@@ -43,8 +43,8 @@ export default function PostPage() {
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👾</text></svg>"
         />
       </Head>
-      <S.Header>
-        {session?.user.uid && (
+      {session?.user.uid && (
+        <S.Header>
           <>
             <Link href="/">
               <S.Link>Adicionar jogos</S.Link>
@@ -62,8 +62,8 @@ export default function PostPage() {
               />
             </section>
           </>
-        )}
-      </S.Header>
+        </S.Header>
+      )}
       <S.Container>
         <div>
           <S.Title>
