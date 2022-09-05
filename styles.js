@@ -53,7 +53,7 @@ export const Header = styled.header`
   padding-bottom: 10px;
   right: 0;
   top: 0;
-  background: #ccd1dd;
+  background-color: #a9adb7;
   z-index: 9;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -226,6 +226,20 @@ export const Infos = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 50%;
+`
+
+export const Add = styled.span`
+  font-size: 10px;
+  padding: 2px;
+  margin: 0;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color: #a9adb7;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
 `
 
 export const Platforms = styled.div`

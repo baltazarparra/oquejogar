@@ -188,6 +188,7 @@ export default function Home({ providers }) {
                         ))}
                       </S.Platforms>
                     </S.Infos>
+                    <S.Add>Adicionar</S.Add>
                   </S.Card>
                 ))}
               </S.Results>
