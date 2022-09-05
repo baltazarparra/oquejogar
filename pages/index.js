@@ -9,6 +9,15 @@ import Login from '../components/Login'
 
 import * as S from '../styles'
 
+import android from '../public/android.svg'
+import fallback from '../public/fallback.svg'
+import ios from '../public/ios.svg'
+import mac from '../public/mac.svg'
+import nintendo from '../public/nintendo.svg'
+import pc from '../public/pc.svg'
+import playstation from '../public/playstation.svg'
+import xbox from '../public/xbox.svg'
+
 const db = firebaseApp.firestore()
 
 export default function Home({ providers }) {
@@ -17,11 +26,11 @@ export default function Home({ providers }) {
   const [searchTerm, setSearchTerm] = useState()
   const [games, setGames] = useState()
   const [list, setList] = useState()
-  const [slug, setSlug] = useState()
+  const [slugs, setSlugs] = useState()
   const [refetch, setRefetch] = useState()
 
   const fetchGames = async () => {
-    const response = slug && db.collection(slug)
+    const response = slugs && db.collection(slugs)
     const data = await response?.get()
     setList(data)
   }
@@ -35,7 +44,7 @@ export default function Home({ providers }) {
       const raw = `${session.user.tag
         .split(' ')
         .join('')}${session.user.uid.substring(0, 3)}`
-      setSlug(raw)
+      setSlugs(raw)
     }
   }, [session])
 
@@ -65,6 +74,8 @@ export default function Home({ providers }) {
 
   if (!session) return <Login providers={providers} />
 
+  console.log(games)
+
   return (
     <S.Main>
       <Head>
@@ -84,7 +95,7 @@ export default function Home({ providers }) {
             <>
               <S.Link onClick={() => signOut()}>Sair</S.Link>
               <section>
-                <Link href={`/${slug}`} passHref>
+                <Link href={`/${slugs}`} passHref>
                   <S.Username>{session?.user.name}</S.Username>
                 </Link>
                 <Image
@@ -136,29 +147,45 @@ export default function Home({ providers }) {
                 onChange={(e) => setInputValue(e.target.value)}
               />
             </div>
-            {games && inputValue && (
+            {games && (
               <S.Results>
                 {games.map((game) => (
                   <S.Card
                     onClick={() => {
-                      setRefetch(!refetch)
-                      setInputValue('')
-                      db.collection(slug).doc(game.slug).set({
+                      db.collection(slugs).doc(game.slugs).set({
                         game
                       })
+                      setRefetch(!refetch)
+                      setInputValue('')
+                      setGames('')
                     }}
                     key={game.id}
                   >
                     {game.background_image && (
                       <Image
-                        width="160"
-                        height="100"
+                        width="100"
+                        height="90"
                         src={game.background_image}
                         alt={session.user.name}
                       />
                     )}
-                    <p>{game.name}</p>
-                    <button>Adicionar</button>
+                    <S.Infos>
+                      <p>{game.name}</p>
+                      <S.Genres>
+                        {game.genres.map((item) => {
+                          return <S.Tag key={item.name}>{item.name}</S.Tag>
+                        })}
+                      </S.Genres>
+                      <S.Platforms>
+                        {game.parent_platforms?.map((videogame) => (
+                          <img
+                            key={videogame.platform.id}
+                            src={`/${videogame.platform.slug}.svg`}
+                            alt={videogame.platform.name}
+                          />
+                        ))}
+                      </S.Platforms>
+                    </S.Infos>
                   </S.Card>
                 ))}
               </S.Results>
@@ -166,7 +193,7 @@ export default function Home({ providers }) {
           </div>
           <S.Outer>
             {list?.docs.length > 0 && (
-              <Link href={`/${slug}`}>
+              <Link href={`/${slugs}`}>
                 <S.Button>Ver minha lista</S.Button>
               </Link>
             )}

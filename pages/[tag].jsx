@@ -18,6 +18,8 @@ export default function PostPage() {
   const [list, setList] = useState()
   const router = useRouter()
 
+  console.log(list)
+
   useEffect(() => {
     db.collection(router.query.tag).onSnapshot((onSnapshot) => {
       const items = []
@@ -71,13 +73,31 @@ export default function PostPage() {
             <S.Results>
               {list.map((item) => (
                 <S.Card key={item.game.id}>
-                  <Image
-                    width="160"
-                    height="100"
-                    src={item.game.background_image}
-                    alt={item.game.name}
-                  />
-                  <p>{item.game.name}</p>
+                  {item.game.background_image && (
+                    <Image
+                      width="100"
+                      height="90"
+                      src={item.game.background_image}
+                      alt={session?.user.name}
+                    />
+                  )}
+                  <S.Infos>
+                    <p>{item.game.name}</p>
+                    <S.Genres>
+                      {item.game.genres?.map((item) => {
+                        return <S.Tag key={item.id}>{item.name}</S.Tag>
+                      })}
+                    </S.Genres>
+                    <S.Platforms>
+                      {item.game.parent_platforms?.map((videogame) => (
+                        <img
+                          key={videogame.platform.id}
+                          src={`/${videogame.platform.slug}.svg`}
+                          alt={videogame.platform.name}
+                        />
+                      ))}
+                    </S.Platforms>
+                  </S.Infos>
                 </S.Card>
               ))}
             </S.Results>

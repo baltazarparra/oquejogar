@@ -12,11 +12,13 @@ export const List = styled.ul`
   text-align: center;
   align-items: baseline;
   padding: 0;
+  flex-wrap: wrap;
 
   li {
     position: relative;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    flex: 1;
 
     &:first-child {
       margin-left: 0 !important;
@@ -135,6 +137,9 @@ export const Results = styled.ul`
   flex-wrap: wrap;
   justify-content: space-around;
   margin: 20px 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 12px;
 
   @media (min-width: 1024px) {
     margin: 40px 0;
@@ -142,16 +147,18 @@ export const Results = styled.ul`
 `
 
 export const Card = styled.li`
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   background-color: #d9d9d9;
   border-radius: 4px;
   list-style: none;
   text-align: center;
-  width: 160px;
+  flex: 1;
+  min-width: 160px;
+  max-width: 160px;
   min-height: 260px;
-  margin: 1em;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
@@ -162,13 +169,65 @@ export const Card = styled.li`
     padding: 0.4em;
   }
 
+  &:before {
+    content: '';
+    opacity: 0;
+    position: absolute;
+  }
+
   &:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+    &:before {
+      content: 'adicionar';
+      opacity: 1;
+      color: white;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+      transition: all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
   }
 
   img {
-    border-radius: 4px !important;
-    padding: 6px !important;
+    border-radius: 13px !important;
+    padding: 10px !important;
+  }
+`
+
+export const Genres = styled.ul`
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+`
+
+export const Tag = styled.li`
+  margin: 0 3px;
+`
+
+export const Infos = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 50%;
+`
+
+export const Platforms = styled.div`
+  img {
+    padding: 4px !important;
+    border-radius: 0 !important;
   }
 `
 
