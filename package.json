@@ -16,6 +16,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.0.3",
+    "react-loader-spinner": "^5.3.3",
     "react-web-share": "^1.1.6",
     "styled-components": "^5.3.5"
   },

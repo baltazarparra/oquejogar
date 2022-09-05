@@ -178,7 +178,9 @@ export default function Home({ providers }) {
                       </S.Genres>
                       <S.Platforms>
                         {game.parent_platforms?.map((videogame) => (
-                          <img
+                          <Image
+                            width="20px"
+                            height="20px"
                             key={videogame.platform.id}
                             src={`/${videogame.platform.slug}.svg`}
                             alt={videogame.platform.name}

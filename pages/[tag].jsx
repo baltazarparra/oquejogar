@@ -90,7 +90,9 @@ export default function PostPage() {
                     </S.Genres>
                     <S.Platforms>
                       {item.game.parent_platforms?.map((videogame) => (
-                        <img
+                        <Image
+                          width="20px"
+                          height="20px"
                           key={videogame.platform.id}
                           src={`/${videogame.platform.slug}.svg`}
                           alt={videogame.platform.name}
