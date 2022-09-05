@@ -11,16 +11,18 @@ import * as S from '../styles'
 
 import { RWebShare } from 'react-web-share'
 
+import { ThreeDots } from 'react-loader-spinner'
+
 const db = firebaseApp.firestore()
 
 export default function PostPage() {
   const { data: session } = useSession()
   const [list, setList] = useState()
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-  console.log(list)
-
   useEffect(() => {
+    console.log(list)
     db.collection(router.query.tag).onSnapshot((onSnapshot) => {
       const items = []
       onSnapshot.forEach(function (doc) {
@@ -69,7 +71,7 @@ export default function PostPage() {
           <S.Title>
             Jogos favoritos de {router.query.tag.replace(/[0-9]/g, '')}
           </S.Title>
-          {list && (
+          {list?.length > 0 ? (
             <S.Results>
               {list.map((item) => (
                 <S.Card key={item.game.id}>
@@ -103,19 +105,38 @@ export default function PostPage() {
                 </S.Card>
               ))}
             </S.Results>
+          ) : list && session?.user ? (
+            <S.Empty>
+              <Link href="/">Clique aqui para adicionar jogos</Link>
+            </S.Empty>
+          ) : (
+            session?.user && (
+              <ThreeDots
+                height="40"
+                width="40"
+                radius="9"
+                color="#192534"
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{ display: 'block', textAlign: 'center' }}
+                wrapperClassName=""
+                visible={true}
+              />
+            )
           )}
         </div>
         <S.Outer>
           {session?.user ? (
-            <RWebShare
-              data={{
-                text: 'Meus jogos favoritos',
-                url: `https://oquejogar.com/${router.query.tag}`,
-                title: 'oquejogar.com'
-              }}
-            >
-              <S.Button>Compartilhar</S.Button>
-            </RWebShare>
+            list?.length > 0 && (
+              <RWebShare
+                data={{
+                  text: 'Meus jogos favoritos',
+                  url: `https://oquejogar.com/${router.query.tag}`,
+                  title: 'oquejogar.com'
+                }}
+              >
+                <S.Button>Compartilhar</S.Button>
+              </RWebShare>
+            )
           ) : (
             <Link href={`/`}>
               <S.Button>Criar minha lista</S.Button>

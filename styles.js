@@ -150,6 +150,10 @@ export const Results = styled.ul`
   }
 `
 
+export const Empty = styled.p`
+  text-align: center;
+`
+
 export const Card = styled.li`
   position: relative;
   display: flex;

@@ -9,14 +9,7 @@ import Login from '../components/Login'
 
 import * as S from '../styles'
 
-import android from '../public/android.svg'
-import fallback from '../public/fallback.svg'
-import ios from '../public/ios.svg'
-import mac from '../public/mac.svg'
-import nintendo from '../public/nintendo.svg'
-import pc from '../public/pc.svg'
-import playstation from '../public/playstation.svg'
-import xbox from '../public/xbox.svg'
+import { ThreeDots } from 'react-loader-spinner'
 
 const db = firebaseApp.firestore()
 
@@ -28,6 +21,7 @@ export default function Home({ providers }) {
   const [list, setList] = useState()
   const [slugs, setSlugs] = useState()
   const [refetch, setRefetch] = useState()
+  const [loading, setLoading] = useState(false)
 
   const fetchGames = async () => {
     const response = slugs && db.collection(slugs)
@@ -62,19 +56,19 @@ export default function Home({ providers }) {
 
   useEffect(() => {
     if (searchTerm) {
+      setLoading(true)
       fetch(
         `https://rawg.io/api/games?search=${searchTerm}&page_size=20&page=1&key=458263303ecd4ab5b91d155ef78bcdcb`
       )
         .then((res) => res.json())
         .then((data) => {
           setGames(data.results)
+          setLoading(false)
         })
     }
   }, [searchTerm])
 
   if (!session) return <Login providers={providers} />
-
-  console.log(games)
 
   return (
     <S.Main>
@@ -111,7 +105,7 @@ export default function Home({ providers }) {
         <S.Container>
           <div>
             <S.Title>Busque seus jogos favoritos para montar sua lista</S.Title>
-            {list && (
+            {list ? (
               <S.List>
                 {list.docs.map((doc) => (
                   <li
@@ -138,6 +132,17 @@ export default function Home({ providers }) {
                   ></li>
                 ))}
               </S.List>
+            ) : (
+              <ThreeDots
+                height="40"
+                width="40"
+                radius="9"
+                color="#192534"
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{ display: 'block', textAlign: 'center' }}
+                wrapperClassName=""
+                visible={true}
+              />
             )}
             <div>
               <S.Search
@@ -147,7 +152,7 @@ export default function Home({ providers }) {
                 onChange={(e) => setInputValue(e.target.value)}
               />
             </div>
-            {games && (
+            {games ? (
               <S.Results>
                 {games.map((game) => (
                   <S.Card
@@ -192,6 +197,19 @@ export default function Home({ providers }) {
                   </S.Card>
                 ))}
               </S.Results>
+            ) : (
+              loading && (
+                <ThreeDots
+                  height="40"
+                  width="40"
+                  radius="9"
+                  color="#192534"
+                  ariaLabel="three-dots-loading"
+                  wrapperStyle={{ display: 'block', textAlign: 'center' }}
+                  wrapperClassName=""
+                  visible={true}
+                />
+              )
             )}
           </div>
           <S.Outer>
