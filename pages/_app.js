@@ -2,10 +2,17 @@ import { SessionProvider } from 'next-auth/react'
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+  :root {
+    --black: #121212;
+    --gray: #1e1e1e;
+    --silver: #9c9c9c;
+    --white: #e3e3e3;
+  }
+
   html {
-    background-color: #BFC3CD;
-    color: #192534;
-    font-family: 'Roboto Mono', monospace;
+    background-color: var(--black);
+    color: var(--silver);
+    font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
   }
 
@@ -16,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
   body, h1, h2, h3, h4, h5, h6, p, ol, ul {
     margin: 0;
     padding: 0;
-    font-weight: normal;
+    font-weight: 400;
   }
 
   ol, ul {

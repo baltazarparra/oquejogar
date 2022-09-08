@@ -26,7 +26,8 @@ export const List = styled.ul`
     }
 
     &:hover {
-      transform: scale(2);
+      z-index: 11;
+      transform: scale(1.6);
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
         0 10px 10px rgba(0, 0, 0, 0.22);
     }
@@ -49,11 +50,10 @@ export const Header = styled.header`
   padding-top: 10px;
   padding-right: 10px;
   padding-left: 10px;
-  border-bottom: solid 1px #a1a1a1;
   padding-bottom: 10px;
   right: 0;
   top: 0;
-  background-color: #a9adb7;
+  background-color: var(--gray);
   z-index: 9;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -65,13 +65,13 @@ export const Header = styled.header`
   a {
     margin-right: 10px;
     font-size: 14px;
-    color: #192534;
+    color: var(--silver);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   a:visited {
-    color: #192534;
+    color: var(--silver);
   }
 
   section {
@@ -86,6 +86,8 @@ export const Header = styled.header`
     border-radius: 4px;
     padding: 0.4em 1em;
     cursor: pointer;
+    background-color: var(--silver);
+    color: black;
   }
 `
 
@@ -104,7 +106,7 @@ export const Username = styled.a`
 `
 
 export const Title = styled.h1`
-  color: #192534;
+  color: var(--white);
   font-size: 20px;
   line-height: 1.1;
   text-align: center;
@@ -119,19 +121,19 @@ export const Title = styled.h1`
 `
 
 export const Search = styled.input`
-  background-color: rgba(217, 217, 217, 70%);
-  border-radius: 3px;
-  border: solid 1px #192534;
-  font-family: 'Roboto Mono', monospace;
+  background-color: var(--silver);
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
-  color: #192534;
-  line-height: 2;
+  color: var(--gray);
+  line-height: 2.4;
   width: 100%;
   padding-left: 10px;
   box-sizing: border-box;
+  border: 0;
 
   &:focus {
-    outline: solid 1px #192534;
+    outline: solid 1px var(--gray);
   }
 `
 
@@ -159,7 +161,7 @@ export const Card = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: #d9d9d9;
+  background-color: var(--gray);
   border-radius: 4px;
   list-style: none;
   text-align: center;
@@ -189,7 +191,7 @@ export const Card = styled.li`
     &:before {
       content: 'adicionar';
       opacity: 1;
-      color: white;
+      color: var(--silver);
       bottom: 0;
       left: 0;
       display: flex;
@@ -202,6 +204,34 @@ export const Card = styled.li`
       border-radius: 4px;
       transition: all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
+  }
+
+  img {
+    border-radius: 13px !important;
+    padding: 10px !important;
+  }
+`
+
+export const Poster = styled.li`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: var(--gray);
+  border-radius: 4px;
+  list-style: none;
+  text-align: center;
+  flex: 1;
+  min-width: 160px;
+  max-width: 160px;
+  min-height: 260px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  button {
+    border: 0;
+    border-radius: 4px;
+    padding: 0.4em;
   }
 
   img {
@@ -230,6 +260,10 @@ export const Infos = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 50%;
+
+  p {
+    padding: 0.6em;
+  }
 `
 
 export const Add = styled.span`
@@ -239,7 +273,7 @@ export const Add = styled.span`
   position: absolute;
   width: 100%;
   bottom: 0;
-  background-color: #a9adb7;
+  background-color: var(--black);
 
   @media (min-width: 1024px) {
     display: none;
@@ -253,36 +287,19 @@ export const Platforms = styled.div`
   }
 `
 
-export const Anchor = styled.a`
-  width: 100%;
-  left: 0;
-  bottom: 0;
-  padding: 1em 0;
-  text-align: center;
-  background-color: #bfc3cd;
-  cursor: pointer;
-  border-top: solid 1px #8a90a1;
-  transition: 0.3s;
-  font-weight: bold;
-
-  &:hover {
-    background-color: #8a90a1;
-  }
-`
-
 export const Footer = styled.span`
   width: 100%;
   bottom: 6px;
   left: 6px;
   font-size: 12px;
-  border-top: solid 1px #a1a1a1;
+  border-top: solid 1px var(--gray);
   padding: 1em;
   text-align: center;
 `
 
 export const Baltz = styled.a`
   text-decoration: none;
-  color: #192534;
+  color: var(--silver);
 `
 
 export const Button = styled.button`
@@ -291,8 +308,8 @@ export const Button = styled.button`
   font-family: inherit;
   font-size: 14px;
   padding: 10px;
-  border-radius: 3px;
-  border: solid 1px #192534;
+  border-radius: 4px;
+  border: solid 1px var(--black);
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -300,6 +317,8 @@ export const Button = styled.button`
   width: 200px;
   justify-content: center;
   margin-bottom: 10px;
+  background-color: var(--gray);
+  color: var(--white);
 
   &:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);

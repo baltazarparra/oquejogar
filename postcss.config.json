@@ -1,0 +1,9 @@
+{
+  "plugins": [
+      {
+        "features": {
+          "custom-properties": true
+        }
+      }
+  ]
+}

@@ -117,17 +117,13 @@ export default function Home({ providers }) {
                       backgroundPosition: 'center',
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
-                      height: '80px',
+                      height: '66px',
                       listStyle: 'none',
-                      lineHeight: '1.8',
-                      fontSize: '14px',
-                      fontWeight: 'bold',
-                      fontStyle: 'italic',
                       marginLeft: '-10px',
                       marginBottom: '10px',
                       width: '60px',
-                      borderRadius: '6px',
-                      border: 'solid 2px white'
+                      borderRadius: '4px',
+                      border: 'solid 1px silver'
                     }}
                   ></li>
                 ))}
@@ -137,7 +133,7 @@ export default function Home({ providers }) {
                 height="40"
                 width="40"
                 radius="9"
-                color="#192534"
+                color="#9c9c9c"
                 ariaLabel="three-dots-loading"
                 wrapperStyle={{ display: 'block', textAlign: 'center' }}
                 wrapperClassName=""
@@ -203,7 +199,7 @@ export default function Home({ providers }) {
                   height="40"
                   width="40"
                   radius="9"
-                  color="#192534"
+                  color="#9c9c9c"
                   ariaLabel="three-dots-loading"
                   wrapperStyle={{ display: 'block', textAlign: 'center' }}
                   wrapperClassName=""

@@ -38,9 +38,9 @@ const AnimatedTextWord = ({ text }) => {
       style={{
         overflow: 'hidden',
         display: 'flex',
-        fontSize: '22px',
-        margin: '0 auto',
-        fontWeight: 600
+        fontSize: '24px',
+        margin: '0 auto 20px auto',
+        fontWeight: 700
       }}
       variants={container}
       initial="hidden"

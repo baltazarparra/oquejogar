@@ -38,9 +38,9 @@ const AnimatedTextWord = ({ text }) => {
       style={{
         display: 'block',
         maxWidth: '360px',
-        marginBottom: '10px',
+        marginBottom: '20px',
         fontSize: '16px',
-        padding: '10px'
+        padding: '0 8px'
       }}
       variants={container}
       initial="hidden"

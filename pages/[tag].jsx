@@ -74,7 +74,7 @@ export default function PostPage() {
           {list?.length > 0 ? (
             <S.Results>
               {list.map((item) => (
-                <S.Card key={item.game.id}>
+                <S.Poster key={item.game.id}>
                   {item.game.background_image && (
                     <Image
                       width="100"
@@ -102,7 +102,7 @@ export default function PostPage() {
                       ))}
                     </S.Platforms>
                   </S.Infos>
-                </S.Card>
+                </S.Poster>
               ))}
             </S.Results>
           ) : list && session?.user ? (
@@ -115,7 +115,7 @@ export default function PostPage() {
                 height="40"
                 width="40"
                 radius="9"
-                color="#192534"
+                color="#9c9c9c"
                 ariaLabel="three-dots-loading"
                 wrapperStyle={{ display: 'block', textAlign: 'center' }}
                 wrapperClassName=""
