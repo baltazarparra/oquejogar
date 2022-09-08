@@ -20,6 +20,7 @@ export default function PostPage() {
   const [list, setList] = useState()
   const [recommendation, setRecommendation] = useState()
   const [title, setTitle] = useState()
+  const [name, setName] = useState()
   const [load, setLoad] = useState()
   const router = useRouter()
 
@@ -91,6 +92,7 @@ export default function PostPage() {
                   key={item.game.id}
                   onClick={() => {
                     setTitle(item.game.slug)
+                    setName(item.game.name)
                   }}
                 >
                   {item.game.background_image && (
@@ -169,7 +171,7 @@ export default function PostPage() {
             />
           ) : (
             <S.Reccomended>
-              <S.Title>Jogos Recomendados</S.Title>
+              <S.Title>Jogos parecidos com {name}</S.Title>
               <S.Results>
                 {recommendation.map((item) => (
                   <S.Reccomend key={item.id}>
