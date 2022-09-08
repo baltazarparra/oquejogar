@@ -32,10 +32,7 @@ const Login = ({ providers }) => {
               <AnimatedTextWord text="o que jogar . com" />
             </div>
             <div>
-              <AnimatedText
-                text="Lista personalizada com seus jogos favoritos e recomendações de novos
-            jogos, baseado em títulos que já curte"
-              />
+              <AnimatedText text="Crie uma lista com seus jogos favoritos e receba recomendações de novos jogos" />
             </div>
             {Object.values(providers).map((provider) => {
               return (

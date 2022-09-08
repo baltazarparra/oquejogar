@@ -153,7 +153,7 @@ export default function Home({ providers }) {
                 {games.map((game) => (
                   <S.Card
                     onClick={() => {
-                      db.collection(slugs).doc(game.slugs).set({
+                      db.collection(slugs).doc(game.slug).set({
                         game
                       })
                       setRefetch(!refetch)

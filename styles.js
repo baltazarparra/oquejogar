@@ -107,16 +107,17 @@ export const Username = styled.a`
 
 export const Title = styled.h1`
   color: var(--white);
-  font-size: 20px;
-  line-height: 1.1;
+  font-size: 26px;
+  line-height: 1.4;
   text-align: center;
   margin-top: 80px;
   margin-bottom: 20px;
 
   @media (min-width: 1024px) {
-    font-size: 30px;
+    font-size: 34px;
     text-align: center;
     margin: 120px 0 40px;
+    line-height: 1.2;
   }
 `
 
