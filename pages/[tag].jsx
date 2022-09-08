@@ -209,7 +209,7 @@ export default function PostPage() {
           !session?.user &&
           recommendation && (
             <Link href={`/`}>
-              Você não está logado, entre para ver as recomendações
+              Você precisa estar logado para ver as recomendações, clique aqui
             </Link>
           )
         )}

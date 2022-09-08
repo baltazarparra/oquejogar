@@ -37,6 +37,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     color: #e3e3e3;
+    text-align: center;
   }
 
   a:visited {
