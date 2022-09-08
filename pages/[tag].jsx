@@ -206,7 +206,7 @@ export default function PostPage() {
                 ))}
               </S.Results>
               <S.Back
-                style={{ margin: '20px auto' }}
+                style={{ margin: '-6px auto 20px auto' }}
                 onClick={() => setRecommendation()}
               >
                 Voltar
