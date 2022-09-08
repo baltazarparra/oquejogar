@@ -169,7 +169,7 @@ export const Card = styled.li`
   flex: 1;
   min-width: 160px;
   max-width: 160px;
-  min-height: 260px;
+  min-height: 290px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
@@ -190,7 +190,7 @@ export const Card = styled.li`
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 
     &:before {
-      content: 'adicionar';
+      content: 'Adicionar';
       opacity: 1;
       color: var(--silver);
       bottom: 0;
@@ -225,7 +225,63 @@ export const Poster = styled.li`
   flex: 1;
   min-width: 160px;
   max-width: 160px;
-  min-height: 260px;
+  min-height: 290px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+
+  button {
+    border: 0;
+    border-radius: 4px;
+    padding: 0.4em;
+  }
+
+  &:before {
+    content: '';
+    opacity: 0;
+    position: absolute;
+  }
+
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+    &:before {
+      content: 'Recomendar Jogos';
+      opacity: 1;
+      color: var(--silver);
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+      transition: all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+  }
+
+  img {
+    border-radius: 13px !important;
+    padding: 10px !important;
+  }
+`
+
+export const Reccomend = styled.li`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: var(--gray);
+  border-radius: 4px;
+  list-style: none;
+  text-align: center;
+  flex: 1;
+  min-width: 160px;
+  max-width: 160px;
+  min-height: 290px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
@@ -249,6 +305,10 @@ export const Genres = styled.ul`
   padding: 0;
   margin: 0;
   align-items: center;
+
+  li {
+    line-height: 1.4;
+  }
 `
 
 export const Tag = styled.li`
@@ -268,8 +328,8 @@ export const Infos = styled.div`
 `
 
 export const Add = styled.span`
-  font-size: 10px;
-  padding: 2px;
+  font-size: 12px;
+  padding: 4px;
   margin: 0;
   position: absolute;
   width: 100%;

@@ -34,6 +34,14 @@ const GlobalStyle = createGlobalStyle`
     max-width: 100%;
     height: auto;
   }
+
+  a {
+    color: #e3e3e3;
+  }
+
+  a:visited {
+    color: #9c9c9c;
+  }
 `
 
 export default function MyApp({

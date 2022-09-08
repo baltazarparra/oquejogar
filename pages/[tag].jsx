@@ -18,11 +18,12 @@ const db = firebaseApp.firestore()
 export default function PostPage() {
   const { data: session } = useSession()
   const [list, setList] = useState()
-  const [loading, setLoading] = useState(false)
+  const [recommendation, setRecommendation] = useState()
+  const [title, setTitle] = useState()
+  const [load, setLoad] = useState()
   const router = useRouter()
 
   useEffect(() => {
-    console.log(list)
     db.collection(router.query.tag).onSnapshot((onSnapshot) => {
       const items = []
       onSnapshot.forEach(function (doc) {
@@ -31,6 +32,18 @@ export default function PostPage() {
       setList(items)
     })
   }, [router.query.tag])
+
+  useEffect(() => {
+    if (title) {
+      setLoad(true)
+      fetch(
+        `https://rawg.io/api/games/${title}/suggested?page=1&page_size=8&key=c542e67aec3a4340908f9de9e86038af`
+      )
+        .then((response) => response.json())
+        .then((data) => setRecommendation(data.results))
+        .then(() => setLoad(false))
+    }
+  }, [title])
 
   return (
     <S.Main>
@@ -74,7 +87,12 @@ export default function PostPage() {
           {list?.length > 0 ? (
             <S.Results>
               {list.map((item) => (
-                <S.Poster key={item.game.id}>
+                <S.Poster
+                  key={item.game.id}
+                  onClick={() => {
+                    setTitle(item.game.slug)
+                  }}
+                >
                   {item.game.background_image && (
                     <Image
                       width="100"
@@ -102,6 +120,7 @@ export default function PostPage() {
                       ))}
                     </S.Platforms>
                   </S.Infos>
+                  <S.Add>Recomendar Jogos</S.Add>
                 </S.Poster>
               ))}
             </S.Results>
@@ -124,6 +143,76 @@ export default function PostPage() {
             )
           )}
         </div>
+        {load && !recommendation && (
+          <ThreeDots
+            height="40"
+            width="40"
+            radius="9"
+            color="#9c9c9c"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{ display: 'block', textAlign: 'center' }}
+            wrapperClassName=""
+            visible={true}
+          />
+        )}
+        {recommendation && session?.user ? (
+          load ? (
+            <ThreeDots
+              height="40"
+              width="40"
+              radius="9"
+              color="#9c9c9c"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{ display: 'block', textAlign: 'center' }}
+              wrapperClassName=""
+              visible={true}
+            />
+          ) : (
+            <>
+              <S.Title>Jogos Recomendados</S.Title>
+              <S.Results>
+                {recommendation.map((item) => (
+                  <S.Reccomend key={item.id}>
+                    {item.background_image && (
+                      <Image
+                        width="100"
+                        height="90"
+                        src={item.background_image}
+                        alt={session?.user.name}
+                      />
+                    )}
+                    <S.Infos>
+                      <p>{item.name}</p>
+                      <S.Genres>
+                        {item.genres?.map((item) => {
+                          return <S.Tag key={item.id}>{item.name}</S.Tag>
+                        })}
+                      </S.Genres>
+                      <S.Platforms>
+                        {item.parent_platforms?.map((videogame) => (
+                          <Image
+                            width="20px"
+                            height="20px"
+                            key={videogame.platform.id}
+                            src={`/${videogame.platform.slug}.svg`}
+                            alt={videogame.platform.name}
+                          />
+                        ))}
+                      </S.Platforms>
+                    </S.Infos>
+                  </S.Reccomend>
+                ))}
+              </S.Results>
+            </>
+          )
+        ) : (
+          !session?.user &&
+          recommendation && (
+            <Link href={`/`}>
+              Você não está logado, entre para ver as recomendações
+            </Link>
+          )
+        )}
         <S.Outer>
           {session?.user ? (
             list?.length > 0 && (
