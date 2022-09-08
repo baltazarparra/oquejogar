@@ -1,5 +1,10 @@
+import { useEffect } from 'react'
+
+import { useRouter } from 'next/router'
+
 import { SessionProvider } from 'next-auth/react'
 import { createGlobalStyle } from 'styled-components'
+import Analytics from 'components/Analytics'
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -49,10 +54,29 @@ export default function MyApp({
   Component,
   pageProps: { session, ...pageProps }
 }) {
+  const router = useRouter()
+
+  const pageview = (url) => {
+    window.gtag('config', 'G-5VDZTKK3P5', {
+      page_path: url
+    })
+  }
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      pageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
+
   return (
     <SessionProvider session={session}>
       <GlobalStyle />
       <Component {...pageProps} />
+      <Analytics />
     </SessionProvider>
   )
 }
