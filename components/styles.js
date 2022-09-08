@@ -10,8 +10,8 @@ export const Marquee = styled.span`
   background-image: url('/brands.png');
   position: fixed;
   height: 200%;
-  width: 32px;
-  background-size: 32px;
+  width: 24px;
+  background-size: 24px;
   background-position: 0 50%;
   background-repeat: repeat-y;
   animation: ${scrolling} 60s linear infinite;
