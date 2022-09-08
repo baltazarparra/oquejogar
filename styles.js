@@ -153,6 +153,22 @@ export const Results = styled.ul`
   }
 `
 
+export const Reccomended = styled.div`
+  @media (max-width: 1024px) {
+    position: fixed;
+    width: 100%;
+    background: var(--black);
+    top: 0;
+    z-index: 12;
+    overflow: scroll;
+    height: 100vh;
+
+    h1 {
+      margin-top: 20px;
+    }
+  }
+`
+
 export const Empty = styled.p`
   text-align: center;
 `
@@ -174,37 +190,40 @@ export const Card = styled.li`
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
 
+  @media (min-width: 1024px) {
+    &:before {
+      content: '';
+      opacity: 0;
+      position: absolute;
+    }
+
+    &:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+
+      &:before {
+        content: 'Adicionar';
+        opacity: 1;
+        color: var(--silver);
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        transition: all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+    }
+  }
+
   button {
     border: 0;
     border-radius: 4px;
     padding: 0.4em;
-  }
-
-  &:before {
-    content: '';
-    opacity: 0;
-    position: absolute;
-  }
-
-  &:hover {
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-
-    &:before {
-      content: 'Adicionar';
-      opacity: 1;
-      color: var(--silver);
-      bottom: 0;
-      left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(0, 0, 0, 0.8);
-      z-index: 10;
-      width: 100%;
-      height: 100%;
-      border-radius: 4px;
-      transition: all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
   }
 
   img {
@@ -236,30 +255,33 @@ export const Poster = styled.li`
     padding: 0.4em;
   }
 
-  &:before {
-    content: '';
-    opacity: 0;
-    position: absolute;
-  }
-
-  &:hover {
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-
+  @media (min-width: 1024px) {
     &:before {
-      content: 'Recomendar Jogos';
-      opacity: 1;
-      color: var(--silver);
-      bottom: 0;
-      left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(0, 0, 0, 0.8);
-      z-index: 10;
-      width: 100%;
-      height: 100%;
-      border-radius: 4px;
-      transition: all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1);
+      content: '';
+      opacity: 0;
+      position: absolute;
+    }
+
+    &:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+
+      &:before {
+        content: 'Recomendar Jogos';
+        opacity: 1;
+        color: var(--silver);
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        transition: all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
     }
   }
 
@@ -295,6 +317,12 @@ export const Reccomend = styled.li`
     border-radius: 13px !important;
     padding: 10px !important;
   }
+`
+
+export const Anchor = styled.a`
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
 `
 
 export const Genres = styled.ul`
@@ -387,6 +415,37 @@ export const Button = styled.button`
 
   svg {
     margin-right: 10px;
+  }
+`
+
+export const Back = styled.button`
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 4px;
+  border: solid 1px var(--black);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: 0.3s;
+  width: 200px;
+  justify-content: center;
+  margin-bottom: 10px;
+  background-color: var(--gray);
+  color: var(--white);
+
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+
+  svg {
+    margin-right: 10px;
+  }
+
+  @media (min-width: 1024px) {
+    display: none;
   }
 `
 

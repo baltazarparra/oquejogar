@@ -168,7 +168,7 @@ export default function PostPage() {
               visible={true}
             />
           ) : (
-            <>
+            <S.Reccomended>
               <S.Title>Jogos Recomendados</S.Title>
               <S.Results>
                 {recommendation.map((item) => (
@@ -203,7 +203,13 @@ export default function PostPage() {
                   </S.Reccomend>
                 ))}
               </S.Results>
-            </>
+              <S.Back
+                style={{ margin: '20px auto' }}
+                onClick={() => setRecommendation()}
+              >
+                Voltar
+              </S.Back>
+            </S.Reccomended>
           )
         ) : (
           !session?.user &&

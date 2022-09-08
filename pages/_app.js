@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     color: var(--silver);
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
+    scroll-behavior: smooth;
   }
 
   *, *:before, *:after {
