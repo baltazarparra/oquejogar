@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import { SessionProvider } from 'next-auth/react'
 import { createGlobalStyle } from 'styled-components'
-import Analytics from 'components/Analytics'
+import Analytics from '../components/Analytics'
 
 const GlobalStyle = createGlobalStyle`
   :root {
