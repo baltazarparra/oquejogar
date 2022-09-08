@@ -162,7 +162,9 @@ export const Reccomended = styled.div`
     top: 0;
     z-index: 12;
     overflow: scroll;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
+    padding-bottom: 40px;
 
     h1 {
       margin-top: 20px;
