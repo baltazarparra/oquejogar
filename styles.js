@@ -112,6 +112,7 @@ export const Title = styled.h1`
   text-align: center;
   margin-top: 80px;
   margin-bottom: 20px;
+  padding: 0 10px;
 
   @media (min-width: 1024px) {
     font-size: 34px;
