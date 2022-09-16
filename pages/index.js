@@ -107,25 +107,13 @@ export default function Home({ providers }) {
             <S.Title>Busque seus jogos favoritos para montar sua lista</S.Title>
             {list ? (
               <S.List>
+                <li>
+                  <Link href={`/${slugs}`}>Sua lista:</Link>
+                </li>
                 {list.docs.map((doc) => (
-                  <li
-                    key={doc.id}
-                    style={{
-                      backgroundImage: `url(${
-                        doc.data().game.background_image
-                      })`,
-                      backgroundPosition: 'center',
-                      backgroundSize: 'cover',
-                      backgroundRepeat: 'no-repeat',
-                      height: '66px',
-                      listStyle: 'none',
-                      marginLeft: '-10px',
-                      marginBottom: '10px',
-                      width: '60px',
-                      borderRadius: '4px',
-                      border: 'solid 1px silver'
-                    }}
-                  ></li>
+                  <li key={doc.id}>
+                    <p>{doc.data().game.name}</p>
+                  </li>
                 ))}
               </S.List>
             ) : (
