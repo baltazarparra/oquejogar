@@ -220,7 +220,7 @@ export default function Home({ providers }) {
                 target="_blank"
                 rel="noreferrer"
               >
-                © 2022 Baltazar Parra.
+                © Baltazar Parra <small>v0.2.0</small>
               </S.Baltz>
             </S.Footer>
           </S.Outer>

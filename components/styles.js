@@ -96,6 +96,11 @@ export const Footer = styled.span`
 export const Baltz = styled.a`
   text-decoration: none;
   color: var(--silver);
+  small {
+    color: #555;
+    margin-left: 0.2em;
+    padding-left: 0.2em;
+  }
 `
 
 export const Hero = styled.aside`

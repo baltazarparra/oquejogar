@@ -10,4 +10,4 @@ oquejogar.com is licensed under the MIT.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-© 2022 Baltazar Parra.
+© Baltazar Parra <small>v0.2.0</small>

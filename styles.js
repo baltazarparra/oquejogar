@@ -285,6 +285,7 @@ export const Poster = styled.li`
     }
 
     &:hover {
+      z-index: 1;
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
         0 10px 10px rgba(0, 0, 0, 0.22);
 
@@ -416,6 +417,11 @@ export const Footer = styled.span`
 export const Baltz = styled.a`
   text-decoration: none;
   color: var(--silver);
+  small {
+    color: #555;
+    margin-left: 0.2em;
+    padding-left: 0.2em;
+  }
 `
 
 export const Button = styled.button`
