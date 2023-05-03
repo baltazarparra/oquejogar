@@ -151,7 +151,29 @@ export const Results = styled.ul`
   }
 `
 
+export const ResultsRecomend = styled.ul`
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 30px auto;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  @media (min-width: 1024px) {
+    margin: 30px 0;
+  }
+`
+
 export const Reccomended = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  z-index: 9;
+  height: 100vh;
+  width: 100%;
+
   @media (max-width: 1024px) {
     position: fixed;
     width: 100%;
@@ -291,7 +313,8 @@ export const Poster = styled.li`
   }
 `
 
-export const Reccomend = styled.li`
+export const Reccomend = styled.a`
+  text-decoration: none;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -316,6 +339,10 @@ export const Reccomend = styled.li`
   img {
     border-radius: 13px !important;
     padding: 10px !important;
+  }
+
+  &:hover {
+    background-color: black;
   }
 `
 
@@ -443,10 +470,6 @@ export const Back = styled.button`
   svg {
     margin-right: 10px;
   }
-
-  @media (min-width: 1024px) {
-    display: none;
-  }
 `
 
 export const Outer = styled.div`
@@ -459,4 +482,8 @@ export const Outer = styled.div`
 
 export const Link = styled.button`
   margin: 0 !important;
+`
+
+export const Small = styled.p`
+  margin: 2em auto;
 `

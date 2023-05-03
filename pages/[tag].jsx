@@ -172,42 +172,52 @@ export default function PostPage() {
           ) : (
             <S.Reccomended>
               <S.Title>Jogos parecidos com {name}</S.Title>
-              <S.Results>
+              <S.ResultsRecomend>
                 {recommendation.map((item) => (
-                  <S.Reccomend key={item.id}>
-                    {item.background_image && (
-                      <Image
-                        width="100"
-                        height="90"
-                        src={item.background_image}
-                        alt={session?.user.name}
-                      />
-                    )}
-                    <S.Infos>
-                      <p>{item.name}</p>
-                      <S.Genres>
-                        {item.genres?.map((item) => {
-                          return <S.Tag key={item.id}>{item.name}</S.Tag>
-                        })}
-                      </S.Genres>
-                      <S.Platforms>
-                        {item.parent_platforms?.map((videogame) => (
-                          <Image
-                            width="20px"
-                            height="20px"
-                            key={videogame.platform.id}
-                            src={`/${videogame.platform.slug}.svg`}
-                            alt={videogame.platform.name}
-                          />
-                        ))}
-                      </S.Platforms>
-                    </S.Infos>
-                  </S.Reccomend>
+                  <Link
+                    passHref
+                    key={item.id}
+                    href={`https://www.youtube.com/results?search_query=${item.name}+gameplay+official`}
+                  >
+                    <S.Reccomend target="_blank">
+                      {item.background_image && (
+                        <Image
+                          width="100"
+                          height="90"
+                          src={item.background_image}
+                          alt={session?.user.name}
+                        />
+                      )}
+                      <S.Infos>
+                        <p>{item.name}</p>
+                        <S.Genres>
+                          {item.genres?.map((item) => {
+                            return <S.Tag key={item.id}>{item.name}</S.Tag>
+                          })}
+                        </S.Genres>
+                        <S.Platforms>
+                          {item.parent_platforms?.map((videogame) => (
+                            <Image
+                              width="20px"
+                              height="20px"
+                              key={videogame.platform.id}
+                              src={`/${videogame.platform.slug}.svg`}
+                              alt={videogame.platform.name}
+                            />
+                          ))}
+                        </S.Platforms>
+                      </S.Infos>
+                      <S.Add>Ver gameplay</S.Add>
+                    </S.Reccomend>
+                  </Link>
                 ))}
-              </S.Results>
+              </S.ResultsRecomend>
               <S.Back
                 style={{ margin: '-6px auto 20px auto' }}
-                onClick={() => setRecommendation()}
+                onClick={() => {
+                  setRecommendation()
+                  setTitle()
+                }}
               >
                 Voltar
               </S.Back>

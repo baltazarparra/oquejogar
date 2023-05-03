@@ -6,7 +6,8 @@ const nextConfig = {
     domains: [
       'lh3.googleusercontent.com',
       'media.rawg.io',
-      'images.unsplash.com'
+      'images.unsplash.com',
+      'media.tenor.com'
     ]
   },
   webpack(config) {

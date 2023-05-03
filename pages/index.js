@@ -108,7 +108,19 @@ export default function Home({ providers }) {
             {list ? (
               <S.List>
                 <li>
-                  <Link href={`/${slugs}`}>Sua lista:</Link>
+                  {list.docs.length > 0 ? (
+                    <Link href={`/${slugs}`}>Sua lista: </Link>
+                  ) : (
+                    <>
+                      <S.Small>Você ainda não adicionou jogos</S.Small>
+                      <Image
+                        alt="playstation"
+                        width="320px"
+                        height="250px"
+                        src="/../public/game.gif"
+                      />
+                    </>
+                  )}
                 </li>
                 {list.docs.map((doc) => (
                   <li key={doc.id}>
